@@ -1,0 +1,25 @@
+.u-font-h1 {
+	font-family: 'Danfo';
+	font-size: 7.6rem
+}
+
+.u-font-h2 {
+	font-size: 3rem; //1.8vw
+  font-weight: 500;
+  
+  @include screen (small) {
+    font-size: 2.6rem;
+  }
+
+	@media screen and (max-width: 480px) {
+    font-size: 2.4rem;
+	}
+}
+
+.u-font-sm {
+	font-size: 1.4rem;
+}
+
+.u-font-medium {
+	font-weight: 500;
+}

@@ -1,0 +1,39 @@
+@font-face {
+font-family: 'Inter';
+font-weight: normal;
+src: url('~assets/fonts/Inter/Inter-Regular.ttf')
+	format('truetype'); /* Safari, Android, iOS */
+text-rendering: optimizeLegibility;
+}
+
+@font-face {
+font-family: 'Inter';
+font-weight: 500;
+src: url('~assets/fonts/Inter/Inter-Medium.ttf')
+	format('truetype'); /* Safari, Android, iOS */
+text-rendering: optimizeLegibility;
+}
+
+@font-face {
+font-family: 'Inter';
+font-weight: 600;
+src: url('~assets/fonts/Inter/Inter-SemiBold.ttf')
+	format('truetype'); /* Safari, Android, iOS */
+text-rendering: optimizeLegibility;
+} 
+
+@font-face {
+	font-family: 'Danfo';
+	font-weight: normal;
+	src: url('~assets/fonts/Danfo/Danfo-Std.otf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+	font-family: 'VCR OSD MONO';
+	font-weight: normal;
+	src: url('~assets/fonts/VCR_OSD_MONO.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
