@@ -37,3 +37,43 @@ text-rendering: optimizeLegibility;
 		format('truetype'); /* Safari, Android, iOS */
 	text-rendering: optimizeLegibility;
 }
+
+@font-face {
+	font-family: 'GT America Compressed';
+	font-weight: 300;
+	src: url('~assets/fonts/GT-America/GT-America-Compressed-Light.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+	font-family: 'GT America Compressed';
+	font-weight: 400;
+	src: url('~assets/fonts/GT-America/GT-America-Compressed-Regular.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+	font-family: 'GT America Condensed';
+	font-weight: 300;
+	src: url('~assets/fonts/GT-America/GT-America-Condensed-Light.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+	font-family: 'GT America Condensed';
+	font-weight: 400;
+	src: url('~assets/fonts/GT-America/GT-America-Condensed-Regular.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}
+
+@font-face {
+	font-family: 'GT America Condensed';
+	font-weight: 500;
+	src: url('~assets/fonts/GT-America/GT-America-Condensed-Medium.ttf')
+		format('truetype'); /* Safari, Android, iOS */
+	text-rendering: optimizeLegibility;
+}

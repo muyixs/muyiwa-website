@@ -1,11 +1,15 @@
+h1, h2, h3 {
+	font-weight: 400;
+}
+
 .u-font-h1 {
-	font-family: 'Danfo';
-	font-size: 7.6rem
+	font-family: 'GT America Compressed';
+	font-size: 12rem;
+	text-transform: uppercase;
 }
 
 .u-font-h2 {
-	font-size: 3rem; //1.8vw
-  font-weight: 500;
+	font-size: 3rem;
   
   @include screen (small) {
     font-size: 2.6rem;
