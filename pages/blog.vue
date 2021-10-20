@@ -1,5 +1,81 @@
 <template>
-  <div class="c-blog">test</div>
+  <div class="c-blog">
+    <h1 class="u-font-h1">Blog</h1>
+    <p class="c-blog__page-subtext">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500.
+    </p>
+    <section class="c-blog__filter">
+      <button class="c-blog__filter-toggle">
+        <span>Filters</span>
+        <svg
+          width="17"
+          height="12"
+          viewBox="0 0 17 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.61582 10.5275C9.05562 11.2668 7.94438 11.2668 7.38418 10.5275L1.10834 2.24554C0.409647 1.3235 1.0673 0 2.22416 0L14.7758 0C15.9327 0 16.5904 1.3235 15.8917 2.24554L9.61582 10.5275Z"
+            fill="#202020"
+          />
+        </svg>
+      </button>
+      <div class="c-blog__filter-tags">
+        <nuxt-link to="" class="c-blog__tag">All</nuxt-link>
+        <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
+        <span class="c-blog__tag">Software architecture</span>
+        <span class="c-blog__tag">Software design</span>
+        <span class="c-blog__tag">Quantum computing</span>
+      </div>
+    </section>
+    <section class="c-blog__posts-wrap">
+      <div class="c-blog__post">
+        <h2>Software design and architecture</h2>
+        <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
+      </div>
+      <div class="c-blog__post">
+        <h2>Reverse Engineering</h2>
+        <nuxt-link to="" class="c-blog__tag">Software design</nuxt-link>
+      </div>
+      <div class="c-blog__post">
+        <h2>Quantum Computing</h2>
+        <nuxt-link to="" class="c-blog__tag">Cognitive design</nuxt-link>
+      </div>
+      <div class="c-blog__post">
+        <h2>Large scale data processing</h2>
+        <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
+      </div>
+      <div class="c-blog__post">
+        <h2>Artificial Intelligence</h2>
+        <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
+      </div>
+    </section>
+    <paginate
+      v-model="page"
+      page-count="3"
+      prev-text="Prev"
+      next-text="Next"
+      :hide-prev-next="true"
+      class="c-paginate"
+      container-class="c-paginate"
+      active-class="c-paginate__active"
+      break-view-class="c-paginate__break-view"
+    >
+    </paginate>
+    <section class="c-blog__subscribe">
+      <p>
+        Mostly amusing myself on here tbh! Turning over cool-looking rocks and
+        writing down what I find. Subscribe to get new stories by email. I love
+        you.
+      </p>
+      <form action="">
+        <input type="email" placeholder="Enter your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -7,11 +83,176 @@ export default {
   components: {},
   async asyncData({ params }) {},
   data() {
-    return {}
+    return {
+      page: 1,
+    }
   },
   mounted() {},
   methods: {},
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.c-blog {
+  padding-top: 13vh;
+
+  &__page-subtext {
+    max-width: 800px;
+    font-size: 2.6rem;
+    line-height: 35px;
+    margin-top: 30px;
+  }
+
+  &__filter {
+    margin-top: 90px;
+    text-transform: uppercase;
+
+    &-toggle {
+      font-weight: 500;
+      font-size: 2rem;
+      width: fit-content;
+      background: transparent;
+      border: none;
+      text-transform: uppercase;
+
+      svg {
+        margin-left: 5px;
+        margin-bottom: 1px;
+        height: 12px;
+      }
+    }
+
+    &-tags {
+      margin-top: 28px;
+    }
+  }
+
+  &__tag {
+    border: 1px solid #4c36439b;
+    border-radius: $radius-default;
+    padding: 8px 14px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: inherit;
+
+    &:not(:first-child) {
+      margin-left: 16px;
+    }
+  }
+
+  &__posts-wrap {
+    margin-top: 130px;
+  }
+  &__post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 80px;
+      padding-bottom: 66px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 4.8rem;
+      width: 74%;
+    }
+  }
+
+  .c-paginate {
+    display: flex;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 115px;
+    text-transform: uppercase;
+    color: #4c3643;
+
+    @include screen('small') {
+      margin-top: 90px;
+    }
+
+    ::v-deep li {
+      list-style-type: none;
+      border-radius: 10px;
+      border: 1px solid #4c3643;
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      &:hover {
+        // background-color: rgba($color-red, 0.2);
+      }
+
+      a {
+        display: block;
+        padding: 12px 18px;
+        outline: none;
+      }
+    }
+
+    ::v-deep .c-paginate__active {
+      color: white;
+      background: rgba(76, 54, 67, 1);
+
+      &:hover {
+        // background-color: $color-red;
+      }
+    }
+
+    ::v-deep .c-paginate__break-view {
+      &:hover {
+        background-color: transparent;
+      }
+
+      a {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__subscribe {
+    display: flex;
+    flex-direction: column;
+    margin: 130px 0;
+    padding-top: 114px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.3);
+
+    > * {
+      width: 60%;
+    }
+
+    p {
+      font-size: 2.6rem;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+
+      input[type='email'] {
+        width: 72%;
+        font-size: 2.2rem;
+        padding: 30px 40px;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid #4c3643;
+      }
+
+      button {
+        width: 28%;
+        max-width: 200px;
+        border-radius: 10px;
+        border: none;
+        color: $color-pastel-brown;
+        font-weight: 500;
+        background: #4c3643;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+</style>
