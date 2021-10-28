@@ -7,7 +7,7 @@
       1500.
     </p>
     <section class="c-blog__filter">
-      <button class="c-blog__filter-toggle">
+      <button class="c-blog__filter-toggle" @click="toggleFilter()">
         <span>Filters</span>
         <svg
           width="17"
@@ -88,7 +88,9 @@ export default {
     }
   },
   mounted() {},
-  methods: {},
+  methods: {
+    toggleFilter() {},
+  },
 }
 </script>
 
@@ -124,6 +126,10 @@ export default {
 
     &-tags {
       margin-top: 28px;
+      // max-height: 0;
+      // overflow: hidden;
+      // transition: max-height 0.18s ease-out;
+      // pointer-events: auto;
     }
   }
 
@@ -139,6 +145,83 @@ export default {
 
     &:not(:first-child) {
       margin-left: 16px;
+    }
+  }
+
+  .c-paginate {
+    display: flex;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 115px;
+    text-transform: uppercase;
+    color: #4c3643;
+
+    @include screen('small') {
+      margin-top: 90px;
+    }
+
+    ::v-deep li {
+      list-style-type: none;
+      border-radius: 10px;
+      border: 1px solid #4c3643;
+
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+
+      a {
+        display: block;
+        padding: 12px 18px;
+        outline: none;
+      }
+    }
+
+    ::v-deep .c-paginate__active {
+      color: white;
+      background: rgba(76, 54, 67, 1);
+    }
+
+    ::v-deep .c-paginate__break-view {
+      &:hover {
+        background-color: transparent;
+      }
+
+      a {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__tag,
+  .c-paginate::v-deep li {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s border-color $easeOutExpo;
+
+    &:hover {
+      color: white;
+      border-color: transparent;
+
+      &::before {
+        transform: translateY(0);
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      background: rgba(76, 54, 67, 1);
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      border-radius: inherit;
+      transform: translateY(100%);
+      transition: transform 0.4s $easeOutExpo;
+      transform-origin: bottom;
     }
   }
 
@@ -159,57 +242,6 @@ export default {
     h2 {
       font-size: 4.8rem;
       width: 74%;
-    }
-  }
-
-  .c-paginate {
-    display: flex;
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin-top: 115px;
-    text-transform: uppercase;
-    color: #4c3643;
-
-    @include screen('small') {
-      margin-top: 90px;
-    }
-
-    ::v-deep li {
-      list-style-type: none;
-      border-radius: 10px;
-      border: 1px solid #4c3643;
-      &:not(:first-child) {
-        margin-left: 20px;
-      }
-
-      &:hover {
-        // background-color: rgba($color-red, 0.2);
-      }
-
-      a {
-        display: block;
-        padding: 12px 18px;
-        outline: none;
-      }
-    }
-
-    ::v-deep .c-paginate__active {
-      color: white;
-      background: rgba(76, 54, 67, 1);
-
-      &:hover {
-        // background-color: $color-red;
-      }
-    }
-
-    ::v-deep .c-paginate__break-view {
-      &:hover {
-        background-color: transparent;
-      }
-
-      a {
-        pointer-events: none;
-      }
     }
   }
 
