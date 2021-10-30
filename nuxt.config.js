@@ -43,9 +43,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  env: {
-    scClientId: process.env.SC_CLIENT_ID,
-  },
+  env: {},
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
