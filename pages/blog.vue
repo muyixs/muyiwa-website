@@ -8,8 +8,9 @@
     </p>
     <section class="c-blog__filter">
       <button class="c-blog__filter-toggle" @click="toggleFilter()">
-        <span>Filters</span>
+        <span>Filter</span>
         <svg
+          ref="toggleIcon"
           width="17"
           height="12"
           viewBox="0 0 17 12"
@@ -22,7 +23,7 @@
           />
         </svg>
       </button>
-      <div class="c-blog__filter-tags">
+      <div ref="filterTags" class="c-blog__filter-tags">
         <nuxt-link to="" class="c-blog__tag">All</nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
         <span class="c-blog__tag">Software architecture</span>
@@ -89,7 +90,17 @@ export default {
   },
   mounted() {},
   methods: {
-    toggleFilter() {},
+    toggleFilter() {
+      const filterTags = this.$refs.filterTags
+
+      if (filterTags.style.maxHeight) {
+        filterTags.style.maxHeight = null
+        this.$refs.toggleIcon.style.transform = 'rotate(0deg)'
+      } else {
+        filterTags.style.maxHeight = `${filterTags.scrollHeight}px`
+        this.$refs.toggleIcon.style.transform = 'rotate(-180deg)'
+      }
+    },
   },
 }
 </script>
@@ -121,15 +132,15 @@ export default {
         margin-left: 5px;
         margin-bottom: 1px;
         height: 12px;
+        transition: transform 0.3s $easeOutExpo;
       }
     }
 
     &-tags {
       margin-top: 28px;
-      // max-height: 0;
-      // overflow: hidden;
-      // transition: max-height 0.18s ease-out;
-      // pointer-events: auto;
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 0.1s linear;
     }
   }
 
@@ -226,7 +237,7 @@ export default {
   }
 
   &__posts-wrap {
-    margin-top: 130px;
+    margin-top: 80px;
   }
   &__post {
     display: flex;
