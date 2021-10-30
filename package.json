@@ -1,5 +1,5 @@
 {
-  "name": "danfo-radio",
+  "name": "muyiwa-website",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,24 +11,24 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
-    "core-js": "^3.9.1",
-    "nuxt": "^2.15.3",
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.19.0",
+    "nuxt": "^2.15.8",
     "soundcloud-audio": "^1.4.0",
     "vuejs-paginate": "^2.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/style-resources": "^1.0.0",
+    "@nuxtjs/style-resources": "^1.2.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.22.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.7.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-vue": "^7.20.0",
     "node-sass": "^5.0.0",
-    "prettier": "^2.2.1",
-    "sass-loader": "^10"
+    "prettier": "^2.4.1",
+    "sass-loader": "^10.2.0"
   }
 }
