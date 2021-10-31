@@ -1,6 +1,6 @@
 <template>
   <div class="c-home">
-    <div class="c-home__about">
+    <section class="c-home__about">
       <div class="c-home__about-text">
         <h1 class="u-font-h1">HI, I’M OLUMUYIWA ADENAIKE</h1>
         <p class="u-font-regular">
@@ -13,9 +13,10 @@
         </p>
       </div>
       <div class="c-home__about-image">
+        <button>Scroll</button>
         <img src="@/assets/images/portrait.jpg" alt="Muyiwa's portrait" />
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -53,12 +54,29 @@ export default {
       width: 49%;
       // background-color: rgb(141, 141, 141);
       margin-top: 75px;
+      position: relative;
 
       img {
         width: 90%;
         height: 680px;
         object-position: center bottom;
         object-fit: cover;
+      }
+
+      button {
+        $size: 140px;
+        position: absolute;
+        right: 0;
+        bottom: 100px;
+        width: $size;
+        height: $size;
+        border-radius: 100px;
+        border: none;
+        background-color: $color-dark-plum;
+        color: white;
+        font-size: 1.8rem;
+        box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
+        font-weight: 400;
       }
     }
   }
