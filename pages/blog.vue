@@ -300,7 +300,6 @@ export default {
         color: $color-pastel-brown;
         font-weight: 500;
         background: #4c3643;
-        text-transform: uppercase;
       }
     }
   }

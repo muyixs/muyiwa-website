@@ -17,6 +17,40 @@
         <img src="@/assets/images/portrait.jpg" alt="Muyiwa's portrait" />
       </div>
     </section>
+    <section class="c-home__interests">
+      <p class="c-home__interests-subtext u-font-regular">
+        I write about blah blah, you can read some interesting articles I’ve
+        written on my <nuxt-link to="/blog">blog</nuxt-link>. I also find a lot
+        of things interesting, but my focus nowadays is on the following;
+      </p>
+      <div class="c-home__interests-child">
+        <h2 class="u-font-h2">Software Engineering</h2>
+        <p class="u-font-regular">
+          Artificial Intelligence, Quantum Computing, Large scale data
+          processing, User understanding
+        </p>
+      </div>
+      <div class="c-home__interests-child">
+        <h2 class="u-font-h2">Consumer Goods</h2>
+        <p class="u-font-regular">
+          Product Design and Manufacturing, Ecommerce, Logistics, Localization
+        </p>
+      </div>
+      <div class="c-home__interests-child">
+        <h2 class="u-font-h2">Community</h2>
+        <p class="u-font-regular">
+          African economics and politics. People and community development
+          technology.
+        </p>
+      </div>
+    </section>
+    <section class="c-home__cities">
+      <p class="c-home__cities-subtext u-font-regular">
+        I have had the pleasure of living and working in Lagos, San Francisco,
+        London, Oakland & Chicago, and each city has shaped my worldview and
+        perspective.
+      </p>
+    </section>
   </div>
 </template>
 
@@ -78,6 +112,50 @@ export default {
         box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
         font-weight: 400;
       }
+    }
+  }
+
+  &__interests {
+    margin-top: 100px;
+    padding: 100px 0;
+    border-top: 1px dashed rgba(0, 0, 0, 0.3);
+
+    a {
+      color: $color-turquoise;
+      font-weight: 400;
+    }
+
+    &-subtext {
+      max-width: 740px;
+    }
+
+    &-child {
+      max-width: 800px;
+      margin-top: 100px;
+
+      &:not(:first-of-type) {
+        margin-top: 90px;
+      }
+
+      p {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  &__cities {
+    position: relative;
+    width: 100vw;
+    left: calc(-50vw + 50%);
+    background-color: $color-dark-plum;
+    background-image: url('@/assets/images/noise.png');
+    color: white;
+    padding: 160px 0;
+
+    &-subtext {
+      text-align: center;
+      width: 720px;
+      margin: 0 auto;
     }
   }
 }

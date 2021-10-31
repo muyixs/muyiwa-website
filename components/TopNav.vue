@@ -24,7 +24,7 @@ export default {
   font-size: 1.8rem;
   align-items: center;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
 
   a {
     text-decoration: none;
