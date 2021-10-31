@@ -1,5 +1,5 @@
 <template>
-  <div class="l-app">
+  <div class="c-app">
     <top-nav />
     <Nuxt />
     <div ref="siteLoader" class="c-siteloader"></div>
@@ -31,7 +31,7 @@ export default {
 <style lang="scss">
 @import '~/assets/scss/main.scss';
 
-.l-app {
+.c-app {
   padding: 0px 12% 30px;
 }
 

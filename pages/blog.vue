@@ -24,7 +24,9 @@
         </svg>
       </button>
       <div ref="filterTags" class="c-blog__filter-tags">
-        <nuxt-link to="" class="c-blog__tag">All</nuxt-link>
+        <nuxt-link to="" class="c-blog__tag c-blog__tag--selected">
+          All
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
         <span class="c-blog__tag">Software architecture</span>
         <span class="c-blog__tag">Software design</span>
@@ -156,6 +158,11 @@ export default {
 
     &:not(:first-child) {
       margin-left: 16px;
+    }
+
+    &--selected {
+      background: rgba(76, 54, 67, 1);
+      color: white;
     }
   }
 
