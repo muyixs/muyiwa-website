@@ -5,11 +5,12 @@
         <h1 class="u-font-h1">HI, I’M OLUMUYIWA ADENAIKE</h1>
         <p class="u-font-regular">
           Welcome to my blog and personal site, a place to learn more about me
-          and the many things that pique my interest. I’m a Software engineer,
-          currently living in San Francisco, California, where I work as a
-          senior software engineer on Google search. I was born & raised in
-          Lagos, Nigeria, and I’m incredibly passionate about technology and the
-          many opportunities it creates.
+          and the many things that pique my interest. I’m a
+          <span class="u-font-highlighted">Software engineer</span>, currently
+          living in San Francisco, California, where I work as a senior software
+          engineer on <span class="u-font-highlighted">Google search</span>. I
+          was born & raised in Lagos, Nigeria, and I’m incredibly passionate
+          about technology and the many opportunities it creates.
         </p>
       </div>
       <div class="c-home__about-image">
@@ -46,10 +47,46 @@
     </section>
     <section class="c-home__cities">
       <p class="c-home__cities-subtext u-font-regular">
-        I have had the pleasure of living and working in Lagos, San Francisco,
-        London, Oakland & Chicago, and each city has shaped my worldview and
-        perspective.
+        I have had the pleasure of living and working in
+        <span class="u-font-highlighted">Lagos</span>,
+        <span class="u-font-highlighted">San Francisco</span>,
+        <span class="u-font-highlighted">London</span>,
+        <span class="u-font-highlighted">Oakland</span> &
+        <span class="u-font-highlighted">Chicago</span>, and each city has
+        shaped my worldview and perspective.
       </p>
+      <div class="c-home__cities-row">
+        <div class="c-home__cities-wrap">
+          <span>San Francisco</span>
+          <span>Lagos</span>
+          <span>London</span>
+          <span>Oakland</span>
+          <span>Chicago</span>
+        </div>
+        <div class="c-home__cities-wrap">
+          <span>San Francisco</span>
+          <span>Lagos</span>
+          <span>London</span>
+          <span>Oakland</span>
+          <span>Chicago</span>
+        </div>
+      </div>
+      <div class="c-home__cities-row">
+        <div ref="test" class="c-home__cities-wrap">
+          <span>Chicago</span>
+          <span>Oakland</span>
+          <span>London</span>
+          <span>Lagos</span>
+          <span>San Francisco</span>
+        </div>
+        <div class="c-home__cities-wrap">
+          <span>Chicago</span>
+          <span>Oakland</span>
+          <span>London</span>
+          <span>Lagos</span>
+          <span>San Francisco</span>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -61,8 +98,21 @@ export default {
   data() {
     return {}
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.$refs.test.addEventListener(
+      'animationend',
+      function () {
+        alert(1000)
+      },
+      false
+    )
+    setTimeout(() => {
+      // alert(0)
+    }, 10000)
+  },
+  methods: {
+    initCitiesScroll() {},
+  },
 }
 </script>
 
@@ -149,6 +199,8 @@ export default {
     left: calc(-50vw + 50%);
     background-color: $color-dark-plum;
     background-image: url('@/assets/images/noise.png');
+    background-repeat: repeat;
+    background-position: center;
     color: white;
     padding: 160px 0;
 
@@ -156,6 +208,49 @@ export default {
       text-align: center;
       width: 720px;
       margin: 0 auto;
+
+      .u-font-highlighted {
+        color: #37e1ec;
+      }
+    }
+
+    &-row {
+      --anim-play-state: running;
+      --switch: -1;
+      --rotation: rotate(calc(0.6deg * var(--switch)));
+      margin-top: 150px;
+      font-size: 6vw;
+      width: fit-content;
+      white-space: nowrap;
+      transform: var(--rotation);
+
+      &:last-of-type {
+        --switch: 1;
+      }
+
+      &:hover {
+        --anim-play-state: paused;
+      }
+
+      .c-home__cities-wrap {
+        display: inline-block;
+        animation: scrollText 10s linear;
+        animation-play-state: var(--anim-play-state);
+
+        @keyframes scrollText {
+          from {
+            transform: translateX(0%);
+          }
+          to {
+            transform: translateX(calc(-100% * var(--switch)));
+          }
+        }
+
+        > * {
+          margin-right: 6vw;
+          opacity: 0.4;
+        }
+      }
     }
   }
 }
