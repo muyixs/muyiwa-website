@@ -234,7 +234,7 @@ export default {
 
       .c-home__cities-wrap {
         display: inline-block;
-        animation: scrollText 10s linear;
+        // animation: scrollText 10s linear;
         animation-play-state: var(--anim-play-state);
 
         @keyframes scrollText {
