@@ -33,7 +33,7 @@ export default {
 
   &__blog {
     margin-left: 40px;
-    background-color: $color-dark-plum;
+    background-color: $color-navy-blue;
     color: white;
     padding: 10px 32px;
     border: none;

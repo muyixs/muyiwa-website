@@ -41,6 +41,6 @@ export default {
   height: 100vh;
   top: 0;
   left: 0;
-  background: $color-pastel-brown;
+  background: $color-pastel-blue;
 }
 </style>

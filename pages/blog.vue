@@ -36,6 +36,7 @@
     <section class="c-blog__posts-wrap">
       <div class="c-blog__post">
         <h2>Software design and architecture</h2>
+        <nuxt-link to="" class="c-blog__tag">Data processing</nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
       </div>
       <div class="c-blog__post">
@@ -147,7 +148,7 @@ export default {
   }
 
   &__tag {
-    border: 1px solid #4c36439b;
+    border: 1px solid $color-navy-blue;
     border-radius: $radius-default;
     padding: 8px 14px;
     font-size: 1.3rem;
@@ -172,7 +173,7 @@ export default {
     font-size: 1.3rem;
     margin-top: 115px;
     text-transform: uppercase;
-    color: #4c3643;
+    color: $color-navy-blue;
 
     @include screen('small') {
       margin-top: 90px;
@@ -181,7 +182,7 @@ export default {
     ::v-deep li {
       list-style-type: none;
       border-radius: 10px;
-      border: 1px solid #4c3643;
+      border: 1px solid $color-navy-blue;
 
       &:not(:first-child) {
         margin-left: 20px;
@@ -196,7 +197,8 @@ export default {
 
     ::v-deep .c-paginate__active {
       color: white;
-      background: rgba(76, 54, 67, 1);
+      // background: rgba(76, 54, 67, 1);
+      background-color: $color-navy-blue;
     }
 
     ::v-deep .c-paginate__break-view {
@@ -230,7 +232,8 @@ export default {
     &::before {
       content: '';
       position: absolute;
-      background: rgba(76, 54, 67, 1);
+      // background: rgba(76, 54, 67, 1);
+      background-color: $color-navy-blue;
       width: 100%;
       height: 100%;
       left: 0;
@@ -246,6 +249,7 @@ export default {
   &__posts-wrap {
     margin-top: 80px;
   }
+
   &__post {
     display: flex;
     justify-content: space-between;
@@ -260,6 +264,10 @@ export default {
     h2 {
       font-size: 4.8rem;
       width: 74%;
+    }
+
+    .c-blog__tag {
+      flex-shrink: 0;
     }
   }
 
@@ -289,7 +297,7 @@ export default {
         padding: 30px 40px;
         border-radius: 10px;
         background: transparent;
-        border: 1px solid #4c3643;
+        border: 1px solid $color-navy-blue;
       }
 
       button {
@@ -299,7 +307,7 @@ export default {
         border: none;
         color: $color-pastel-brown;
         font-weight: 500;
-        background: #4c3643;
+        background: $color-navy-blue;
       }
     }
   }

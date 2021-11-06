@@ -102,7 +102,7 @@ export default {
     this.$refs.test.addEventListener(
       'animationend',
       function () {
-        alert(1000)
+        // alert(1000)
       },
       false
     )
@@ -156,7 +156,7 @@ export default {
         height: $size;
         border-radius: 100px;
         border: none;
-        background-color: $color-dark-plum;
+        background-color: $color-navy-blue;
         color: white;
         font-size: 1.8rem;
         box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
@@ -197,7 +197,7 @@ export default {
     position: relative;
     width: 100vw;
     left: calc(-50vw + 50%);
-    background-color: $color-dark-plum;
+    background-color: $color-navy-blue;
     background-image: url('@/assets/images/noise.png');
     background-repeat: repeat;
     background-position: center;
