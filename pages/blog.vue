@@ -24,37 +24,50 @@
         </svg>
       </button>
       <div ref="filterTags" class="c-blog__filter-tags">
-        <nuxt-link to="" class="c-blog__tag c-blog__tag--selected">
-          All
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
-        <span class="c-blog__tag">Software architecture</span>
-        <span class="c-blog__tag">Software design</span>
-        <span class="c-blog__tag">Quantum computing</span>
+        <nuxt-link to="" class="c-tag c-tag--selected"> All </nuxt-link>
+        <nuxt-link to="" class="c-tag">Artificial intelligence</nuxt-link>
+        <span class="c-tag">Software architecture</span>
+        <span class="c-tag">Software design</span>
+        <span class="c-tag">Quantum computing</span>
       </div>
     </section>
     <section class="c-blog__posts-wrap">
-      <div class="c-blog__post">
-        <h2>Software design and architecture</h2>
+      <blog-post tags="" />
+      <blog-post tags="software design" />
+      <blog-post tags="Artificial intelligence" />
+      <blog-post tags="software architecture" />
+      <blog-post tags="software design" />
+      <!-- <div class="c-blog__post">
+        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
+          Software design and architecture
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Data processing</nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
       </div>
       <div class="c-blog__post">
-        <h2>Reverse Engineering</h2>
+        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
+          Reverse Engineering
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Software design</nuxt-link>
       </div>
       <div class="c-blog__post">
-        <h2>Quantum Computing</h2>
+        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
+          Quantum Computing
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Cognitive design</nuxt-link>
       </div>
       <div class="c-blog__post">
-        <h2>Large scale data processing</h2>
+        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
+          Large scale data processing
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
       </div>
       <div class="c-blog__post">
-        <h2>Artificial Intelligence</h2>
+        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
+          Artificial Intelligence
+        </nuxt-link>
         <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
-      </div>
+      </div> -->
     </section>
     <paginate
       v-model="page"
@@ -68,17 +81,7 @@
       break-view-class="c-paginate__break-view"
     >
     </paginate>
-    <section class="c-blog__subscribe">
-      <p>
-        Mostly amusing myself on here tbh! Turning over cool-looking rocks and
-        writing down what I find. Subscribe to get new stories by email. I love
-        you.
-      </p>
-      <form action="">
-        <input type="email" placeholder="Enter your email address" required />
-        <button type="submit">Subscribe</button>
-      </form>
-    </section>
+    <blog-subscribe />
   </div>
 </template>
 
@@ -147,26 +150,6 @@ export default {
     }
   }
 
-  &__tag {
-    border: 1px solid $color-navy-blue;
-    border-radius: $radius-default;
-    padding: 8px 14px;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: inherit;
-
-    &:not(:first-child) {
-      margin-left: 16px;
-    }
-
-    &--selected {
-      background: rgba(76, 54, 67, 1);
-      color: white;
-    }
-  }
-
   .c-paginate {
     display: flex;
     font-weight: 500;
@@ -183,6 +166,36 @@ export default {
       list-style-type: none;
       border-radius: 10px;
       border: 1px solid $color-navy-blue;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: inline-block;
+      transition: 0.3s border-color $easeOutExpo;
+
+      &:hover {
+        color: white;
+        border-color: transparent;
+
+        &::before {
+          transform: translateY(0);
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        // background: rgba(76, 54, 67, 1);
+        background-color: $color-navy-blue;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        border-radius: inherit;
+        transform: translateY(100%);
+        transition: transform 0.4s $easeOutExpo;
+        transform-origin: bottom;
+      }
 
       &:not(:first-child) {
         margin-left: 20px;
@@ -212,104 +225,8 @@ export default {
     }
   }
 
-  &__tag,
-  .c-paginate::v-deep li {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    display: inline-block;
-    transition: 0.3s border-color $easeOutExpo;
-
-    &:hover {
-      color: white;
-      border-color: transparent;
-
-      &::before {
-        transform: translateY(0);
-      }
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-      // background: rgba(76, 54, 67, 1);
-      background-color: $color-navy-blue;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-      z-index: -1;
-      border-radius: inherit;
-      transform: translateY(100%);
-      transition: transform 0.4s $easeOutExpo;
-      transform-origin: bottom;
-    }
-  }
-
   &__posts-wrap {
     margin-top: 80px;
-  }
-
-  &__post {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &:not(:last-child) {
-      margin-bottom: 80px;
-      padding-bottom: 66px;
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      font-size: 4.8rem;
-      width: 74%;
-    }
-
-    .c-blog__tag {
-      flex-shrink: 0;
-    }
-  }
-
-  &__subscribe {
-    display: flex;
-    flex-direction: column;
-    margin: 130px 0;
-    padding-top: 114px;
-    border-top: 1px dashed rgba(0, 0, 0, 0.3);
-
-    > * {
-      width: 60%;
-    }
-
-    p {
-      font-size: 2.6rem;
-    }
-
-    form {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 50px;
-
-      input[type='email'] {
-        width: 72%;
-        font-size: 2.2rem;
-        padding: 30px 40px;
-        border-radius: 10px;
-        background: transparent;
-        border: 1px solid $color-navy-blue;
-      }
-
-      button {
-        width: 28%;
-        max-width: 200px;
-        border-radius: 10px;
-        border: none;
-        color: $color-pastel-brown;
-        font-weight: 500;
-        background: $color-navy-blue;
-      }
-    }
   }
 }
 </style>
