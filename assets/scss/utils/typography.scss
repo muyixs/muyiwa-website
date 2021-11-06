@@ -1,10 +1,13 @@
-h1, h2, h3 {
+h1,
+h2,
+h3,
+.u-font-h1, 
+u-font-h2 {
 	font-weight: 400;
 	font-family: 'GT America Compressed';
 }
 
 .u-font-h1 {
-
 	font-size: 10rem;
 	text-transform: uppercase;
 }
