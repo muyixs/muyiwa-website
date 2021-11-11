@@ -45,7 +45,7 @@
         </p>
       </div>
     </section>
-    <section class="c-home__cities">
+    <section ref="cities" class="c-home__cities">
       <p class="c-home__cities-subtext u-font-regular">
         I have had the pleasure of living and working in
         <span class="u-font-highlighted">Lagos</span>,
@@ -57,34 +57,34 @@
       </p>
       <div class="c-home__cities-row">
         <div class="c-home__cities-wrap">
-          <span>San Francisco</span>
-          <span>Lagos</span>
-          <span>London</span>
-          <span>Oakland</span>
-          <span>Chicago</span>
+          <span data-text="San Francisco">San Francisco</span>
+          <span data-text="Lagos">Lagos</span>
+          <span data-text="London">London</span>
+          <span data-text="Oakland">Oakland</span>
+          <span data-text="Chicago">Chicago</span>
         </div>
         <div class="c-home__cities-wrap">
-          <span>San Francisco</span>
-          <span>Lagos</span>
-          <span>London</span>
-          <span>Oakland</span>
-          <span>Chicago</span>
+          <span data-text="San Francisco">San Francisco</span>
+          <span data-text="Lagos">Lagos</span>
+          <span data-text="London">London</span>
+          <span data-text="Oakland">Oakland</span>
+          <span data-text="Chicago">Chicago</span>
         </div>
       </div>
       <div class="c-home__cities-row">
-        <div ref="test" class="c-home__cities-wrap">
-          <span>Chicago</span>
-          <span>Oakland</span>
-          <span>London</span>
-          <span>Lagos</span>
-          <span>San Francisco</span>
+        <div class="c-home__cities-wrap">
+          <span data-text="Chicago">Chicago</span>
+          <span data-text="Oakland">Oakland</span>
+          <span data-text="London">London</span>
+          <span data-text="Lagos">Lagos</span>
+          <span data-text="San Francisco">San Francisco</span>
         </div>
         <div class="c-home__cities-wrap">
-          <span>Chicago</span>
-          <span>Oakland</span>
-          <span>London</span>
-          <span>Lagos</span>
-          <span>San Francisco</span>
+          <span data-text="Chicago">Chicago</span>
+          <span data-text="Oakland">Oakland</span>
+          <span data-text="London">London</span>
+          <span data-text="Lagos">Lagos</span>
+          <span data-text="San Francisco">San Francisco</span>
         </div>
       </div>
     </section>
@@ -94,24 +94,85 @@
 <script>
 export default {
   components: {},
-  async asyncData({ params }) {},
   data() {
     return {}
   },
   mounted() {
-    this.$refs.test.addEventListener(
-      'animationend',
-      function () {
-        // alert(1000)
-      },
-      false
-    )
-    setTimeout(() => {
-      // alert(0)
-    }, 10000)
+    this.initCitiesScroll()
   },
   methods: {
-    initCitiesScroll() {},
+    initCitiesScroll() {
+      const citiesWrap = this.$refs.cities.querySelectorAll(
+        '.c-home__cities-wrap'
+      )
+      const citiesRow = this.$refs.cities.querySelectorAll(
+        '.c-home__cities-row'
+      )
+      const elCount = citiesRow.length
+      const timeConstant = 16
+
+      citiesWrap.forEach((element) => {
+        const elementWidth = element.offsetWidth
+
+        const setAnimationValues = () => {
+          // get position of element in parent
+          const index = Array.from(element.parentNode.children).indexOf(element)
+
+          const transitionTime = (index + 1) * timeConstant
+          const translateValue = (index + 1) * 100
+          const xOffset = elementWidth * index
+
+          element.style.setProperty('--translate-value', `${translateValue}%`)
+          element.style.setProperty('--transition-time', `${transitionTime}s`)
+          element.style.setProperty('--offset', `${xOffset}px`)
+        }
+
+        const reset = () => {
+          const parent = element.parentNode
+          parent.removeChild(element)
+          parent.appendChild(element)
+          element.style.setProperty(
+            '--offset',
+            `${elementWidth * (elCount - 1)}px`
+          )
+          element.style.setProperty('--translate-value', `${100 * elCount}%`)
+          element.style.setProperty(
+            '--transition-time',
+            `${timeConstant * elCount}s`
+          )
+        }
+
+        setAnimationValues()
+
+        element.addEventListener('animationend', () => {
+          reset()
+        })
+      })
+
+      window.addEventListener('blur', () => {
+        citiesRow.forEach((row) => {
+          row.style.setProperty('--anim-play-state', 'paused')
+        })
+      })
+
+      window.addEventListener('focus', () => {
+        citiesRow.forEach((row) => {
+          row.style.setProperty('--anim-play-state', 'running')
+        })
+      })
+
+      // document.addEventListener('visibilitychange', () => {
+      //   if (document.visibilityState === 'hidden') {
+      //     citiesRow.forEach((row) => {
+      //       row.style.setProperty('--anim-play-state', 'paused')
+      //     })
+      //   } else {
+      //     citiesRow.forEach((row) => {
+      //       row.style.setProperty('--anim-play-state', 'running')
+      //     })
+      //   }
+      // })
+    },
   },
 }
 </script>
@@ -202,7 +263,7 @@ export default {
     background-repeat: repeat;
     background-position: center;
     color: white;
-    padding: 160px 0;
+    padding: 160px 0 350px;
 
     &-subtext {
       text-align: center;
@@ -218,37 +279,88 @@ export default {
       --anim-play-state: running;
       --switch: -1;
       --rotation: rotate(calc(0.6deg * var(--switch)));
-      margin-top: 150px;
+      margin-top: 120px;
       font-size: 6vw;
-      width: fit-content;
       white-space: nowrap;
       transform: var(--rotation);
-
-      &:last-of-type {
-        --switch: 1;
-      }
+      position: relative;
+      // width: fit-content;
+      width: 100vw;
+      height: 100%;
 
       &:hover {
         --anim-play-state: paused;
       }
 
       .c-home__cities-wrap {
+        --direction: var(--switch);
         display: inline-block;
-        // animation: scrollText 10s linear;
+        animation: scrollText var(--transition-time) linear;
         animation-play-state: var(--anim-play-state);
+        position: absolute;
+        top: 0;
 
         @keyframes scrollText {
-          from {
-            transform: translateX(0%);
-          }
           to {
-            transform: translateX(calc(-100% * var(--switch)));
+            transform: translateX(calc(var(--translate-value) * var(--switch)));
           }
         }
 
         > * {
+          position: relative;
           margin-right: 6vw;
-          opacity: 0.4;
+          color: #79797f;
+
+          &::before {
+            position: absolute;
+            content: attr(data-text);
+            top: 0;
+            left: 0;
+            color: white;
+            width: 0%;
+            overflow: hidden;
+            transition: 0.3s ease-in-out;
+          }
+
+          &:hover {
+            &::before {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      &:first-of-type {
+        .c-home__cities-wrap {
+          left: var(--offset);
+        }
+      }
+
+      &:last-of-type {
+        --switch: 1;
+        margin-top: 370px;
+
+        .c-home__cities-wrap {
+          right: var(--offset);
+
+          // > * {
+          //   &::before {
+          //     position: absolute;
+          //     content: attr(data-text);
+          //     top: 0;
+          //     left: 0;
+          //     color: white;
+          //     width: 0%;
+          //     overflow: hidden;
+          //     transition: 0.3s ease-in-out;
+          //   }
+
+          //   &:hover {
+          //     &::before {
+          //       width: 100%;
+          //     }
+          //   }
+          // }
         }
       }
     }
