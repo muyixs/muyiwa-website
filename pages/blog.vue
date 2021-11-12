@@ -32,42 +32,16 @@
       </div>
     </section>
     <section class="c-blog__posts-wrap">
-      <blog-post tags="" />
+      <!-- <blog-post tags="" />
       <blog-post tags="software design" />
       <blog-post tags="Artificial intelligence" />
       <blog-post tags="software architecture" />
-      <blog-post tags="software design" />
-      <!-- <div class="c-blog__post">
-        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
-          Software design and architecture
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Data processing</nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Artificial intelligence</nuxt-link>
-      </div>
-      <div class="c-blog__post">
-        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
-          Reverse Engineering
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Software design</nuxt-link>
-      </div>
-      <div class="c-blog__post">
-        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
-          Quantum Computing
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Cognitive design</nuxt-link>
-      </div>
-      <div class="c-blog__post">
-        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
-          Large scale data processing
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
-      </div>
-      <div class="c-blog__post">
-        <nuxt-link to="/article" class="c-blog__post-title u-font-h2">
-          Artificial Intelligence
-        </nuxt-link>
-        <nuxt-link to="" class="c-blog__tag">Machine learning</nuxt-link>
-      </div> -->
+      <blog-post tags="software design" /> -->
+      <blog-post
+        v-for="(post, index) in posts"
+        :key="index"
+        :post-details="post"
+      />
     </section>
     <paginate
       v-model="page"
@@ -86,9 +60,21 @@
 </template>
 
 <script>
+import api from '@/utils/api.js'
+
 export default {
   components: {},
-  async asyncData({ params }) {},
+  async asyncData({ params }) {
+    try {
+      const entries = await api.fetchPosts()
+      // const assets = entries.data.includes.Asset
+
+      return {
+        posts: entries.data.items,
+        // assets,
+      }
+    } catch (error) {}
+  },
   data() {
     return {
       page: 1,

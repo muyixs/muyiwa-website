@@ -1,7 +1,15 @@
 <template>
   <div class="c-post">
-    <nuxt-link to="/article" class="c-post__title u-font-h2">
-      Software design and architecture
+    <nuxt-link
+      :to="{
+        name: 'article',
+        params: {
+          article: postDetails.fields.slug,
+        },
+      }"
+      class="c-post__title u-font-h2"
+    >
+      {{ postDetails.fields.title }}
     </nuxt-link>
     <!-- <nuxt-link
       v-for="(tag, index) in tags"
@@ -15,8 +23,8 @@
       {{ tags }}
     </nuxt-link>
     <template v-else>
-      <nuxt-link to="" class="c-tag"> Software design </nuxt-link>
-      <nuxt-link to="" class="c-tag"> Artificial intelligence </nuxt-link>
+      <nuxt-link to="" class="c-tag">Software design</nuxt-link>
+      <nuxt-link to="" class="c-tag">Artificial intelligence</nuxt-link>
     </template>
   </div>
 </template>
@@ -27,6 +35,10 @@ export default {
     tags: {
       type: Array,
       required: true,
+    },
+    postDetails: {
+      type: Object,
+      default: () => {},
     },
   },
   methods: {},

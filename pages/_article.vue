@@ -2,67 +2,87 @@
   <div class="c-article">
     <div class="c-article__container">
       <p class="c-article__tag">SOFTWARE ARCHITECTURE</p>
-      <h1 class="u-font-h1">Quantum computing</h1>
+      <h1 class="u-font-h1">{{ post.title }}</h1>
       <p class="c-article__excerpt u-font-regular">
-        The experience a reader gets on a blog has a lot to do with how content
-        is structured and relayed. Something we were keen on is relaying
-        information.
+        {{ post.summary }}
       </p>
       <p class="c-article__date">
         <span>NOV 10, 2021</span><span>4 MIN READ</span>
       </p>
-      <div class="c-article__content">
-        <p>
-          The experience a reader gets on a blog has a lot to do with how
-          content is structured and relayed. Something we were keen on is
-          relaying information in a very neat manner. We tried to declutter our
-          home page so only important information is displayed. We also greatly
-          used white space to enhance readability by making the website look
-          simple and uncluttered. This way, we are able to deliver information
-          to our readers without distractions. Also, something important we did
-          was to have the latest post styled a bit differently at the top of the
-          home page, this way, we’re able to draw a reader’s attention to this
-          latest article when you land on the page.
-        </p>
-        <p>
-          The experience a reader gets on a blog has a lot to do with how
-          content is structured and relayed. Something we were keen on is
-          relaying information in a very neat manner. We tried to declutter our
-          home page so only important information is displayed. We also greatly
-          used white space to enhance readability by making the website look
-          simple and uncluttered. This way, we are able to deliver information
-          to our readers without distractions. Also, something important we did
-          was to have the latest post styled a bit differently at the top of the
-          home page, this way, we’re able to draw a reader’s attention to this
-          latest article when you land on the page.
-        </p>
-        <p>
-          The experience a reader gets on a blog has a lot to do with how
-          content is structured and relayed. Something we were keen on is
-          relaying information in a very neat manner. We tried to declutter our
-          home page so only important information is displayed. We also greatly
-          used white space to enhance readability by making the website look
-          simple and uncluttered. This way, we are able to deliver information
-          to our readers without distractions. Also, something important we did
-          was to have the latest post styled a bit differently at the top of the
-          home page, this way, we’re able to draw a reader’s attention to this
-          latest article when you land on the page.
-        </p>
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <div ref="articleBody" class="c-article__body">
+        <p>{{ post.body }}</p>
       </div>
     </div>
     <div class="c-article__posts-wrap">
       <h3>More Articles</h3>
-      <blog-post tags="Software design" />
-      <blog-post tags="artificial intelligence" />
+      <!-- <blog-post tags="Software design" />
+      <blog-post tags="artificial intelligence" /> -->
+      <blog-post :key="index" :post-details="entry" />
+      <blog-post :key="index" :post-details="entry" />
     </div>
     <blog-subscribe />
   </div>
 </template>
 
 <script>
+// import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+// import { BLOCKS } from '@contentful/rich-text-types'
+import api from '@/utils/api.js'
+
 export default {
   components: {},
-  async asyncData({ params }) {},
+  async asyncData({ params }) {
+    try {
+      const entries = await api.fetchPosts({ slug: params.article })
+      const entry = entries.data.items[0]
+      // const assets = entries.data.includes.Asset
+      // const title = post.fields.title
+      // const postBody = documentToHtmlString(post.fields.content)
+      // console.log(postBody)
+
+      // const renderOptions = {
+      //   renderNode: {
+      //     [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+      //       const asset = assets.filter(
+      //         (asset) => asset.sys.id === node.data.target.sys.id
+      //       )[0]
+
+      //       switch (asset.fields.file.contentType) {
+      //         case 'image/png':
+      //           return `<img
+      //             title="${asset.fields.title}"
+      //             src="${`https:${asset.fields.file.url}`}"
+      //             alt="${asset.fields.description}"
+      //           />`
+
+      //         case 'image/gif':
+      //           return `<img
+      //             title="${asset.fields.title}"
+      //             src="${`https:${asset.fields.file.url}`}"
+      //             alt="${asset.fields.description}"
+      //           />`
+
+      //         default:
+      //           break
+      //       }
+      //     },
+      //   },
+      // }
+
+      const post = {
+        title: entry.fields.title,
+        summary: entry.fields.summary,
+        body: entry.fields.content,
+      }
+
+      return {
+        post,
+        entry,
+        // assets,
+      }
+    } catch (error) {}
+  },
   data() {
     return {}
   },
@@ -116,7 +136,7 @@ export default {
     }
   }
 
-  &__content {
+  &__body {
     margin-top: 80px;
 
     p {
@@ -130,7 +150,7 @@ export default {
     margin-top: 190px;
 
     h3 {
-      font-size: 2.8rem;
+      font-size: 2.4rem;
       text-transform: uppercase;
       margin-bottom: 60px;
       font-weight: 500;
