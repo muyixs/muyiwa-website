@@ -33,12 +33,28 @@ import api from '@/utils/api.js'
 export default {
   components: {},
   async asyncData({ params }) {
+    // const options = {
+    //   renderNode: {
+    //     [BLOCKS.EMBEDDED_ASSET]: ({
+    //       data: {
+    //         target: { fields },
+    //       },
+    //     }) =>
+    //       `<img
+    //         src="${fields.file.url}"
+    //         height="${fields.file.details.image.height}"
+    //         width="${fields.file.details.image.width}"
+    //         alt="${fields.description}"
+    //       />`,
+    //   },
+    // }
+
     try {
       const entries = await api.fetchPosts({ slug: params.article })
       const entry = entries.data.items[0]
       // const assets = entries.data.includes.Asset
       // const title = post.fields.title
-      // const postBody = documentToHtmlString(post.fields.content)
+      const postBody = entry.fields.content
       // console.log(postBody)
 
       // const renderOptions = {
@@ -73,7 +89,7 @@ export default {
       const post = {
         title: entry.fields.title,
         summary: entry.fields.summary,
-        body: entry.fields.content,
+        body: postBody,
       }
 
       return {

@@ -2,7 +2,7 @@
   <div class="c-post">
     <nuxt-link
       :to="{
-        name: 'article',
+        name: 'blog-article',
         params: {
           article: postDetails.fields.slug,
         },
