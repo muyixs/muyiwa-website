@@ -11,21 +11,12 @@
     >
       {{ postDetails.fields.title }}
     </nuxt-link>
-    <!-- <nuxt-link
-      v-for="(tag, index) in tags"
-      :key="index"
-      to=""
-      class="c-post__tag"
-    >
-      {{ tag }}
-    </nuxt-link> -->
-    <nuxt-link v-if="tags" to="" class="c-tag">
-      {{ tags }}
+    <nuxt-link to="" class="c-tag">
+      {{ postDetails.fields.tag }}
     </nuxt-link>
-    <template v-else>
-      <nuxt-link to="" class="c-tag">Software design</nuxt-link>
-      <nuxt-link to="" class="c-tag">Artificial intelligence</nuxt-link>
-    </template>
+    <nuxt-link v-if="postDetails.fields.secondaryTag" to="" class="c-tag">
+      {{ postDetails.fields.secondaryTag }}
+    </nuxt-link>
   </div>
 </template>
 
