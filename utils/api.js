@@ -12,6 +12,7 @@ export default {
         content_type: config.CTF_CONTENT_TYPE,
         order: '-sys.createdAt',
         limit: payload?.limit,
+        skip: payload?.skip,
         'fields.slug': payload?.slug,
       },
     }),

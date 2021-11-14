@@ -32,11 +32,6 @@
       </div>
     </section>
     <section class="c-blog__posts-wrap">
-      <!-- <blog-post tags="" />
-      <blog-post tags="software design" />
-      <blog-post tags="Artificial intelligence" />
-      <blog-post tags="software architecture" />
-      <blog-post tags="software design" /> -->
       <blog-post
         v-for="(post, index) in posts"
         :key="index"
@@ -45,7 +40,8 @@
     </section>
     <paginate
       v-model="page"
-      page-count="3"
+      :page-count="totalPages"
+      :click-handler="updatePage"
       prev-text="Prev"
       next-text="Next"
       :hide-prev-next="true"
@@ -64,20 +60,26 @@ import api from '@/utils/api.js'
 
 export default {
   components: {},
-  async asyncData({ params }) {
+  async asyncData({ query }) {
     try {
-      const entries = await api.fetchPosts()
-      // const assets = entries.data.includes.Asset
+      const pageLimit = 5
+      const page = query.page || 1
+
+      const payload = {
+        limit: pageLimit,
+        skip: pageLimit * (page - 1),
+      }
+      const entries = await api.fetchPosts(payload)
 
       return {
         posts: entries.data.items,
-        // assets,
+        totalPages: entries.data.total / pageLimit,
       }
     } catch (error) {}
   },
   data() {
     return {
-      page: 1,
+      page: this.$route.query.page || 1,
     }
   },
   mounted() {},
@@ -92,6 +94,24 @@ export default {
         filterTags.style.maxHeight = `${filterTags.scrollHeight}px`
         this.$refs.toggleIcon.style.transform = 'rotate(-180deg)'
       }
+    },
+    async updatePage() {
+      try {
+        const pageLimit = 5
+
+        this.$router.push({
+          path: this.$route.path,
+          query: { page: this.page },
+        })
+
+        const payload = {
+          limit: pageLimit,
+          skip: pageLimit * (this.page - 1),
+        }
+
+        const entries = await api.fetchPosts(payload)
+        this.posts = entries.data.items
+      } catch (error) {}
     },
   },
 }
