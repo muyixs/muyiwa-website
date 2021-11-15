@@ -1,8 +1,10 @@
 <template>
   <div class="c-app">
-    <top-nav />
-    <Nuxt />
-    <div ref="siteLoader" class="c-siteloader"></div>
+    <div class="c-app__container">
+      <top-nav />
+      <Nuxt />
+      <div ref="siteLoader" class="c-siteloader" />
+    </div>
   </div>
 </template>
 
@@ -33,6 +35,11 @@ export default {
 
 .c-app {
   padding: 0px 12% 30px;
+
+  &__container {
+    margin: 0 auto;
+    max-width: 1680px;
+  }
 }
 
 .c-siteloader {
