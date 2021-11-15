@@ -132,7 +132,26 @@ export default {
   data() {
     return {
       page: this.$route.query.page || 1,
+      PAGE_LIMIT: 5,
     }
+  },
+  watch: {
+    async '$route.query.page'() {
+      this.page = this.$route.query.page || 1
+      const category = this.$route.params.category
+        ? this.toTitleCase(this.$route.params.category)
+        : ''
+      try {
+        const payload = {
+          limit: this.PAGE_LIMIT,
+          skip: this.PAGE_LIMIT * (this.page - 1),
+          category,
+        }
+        const entries = await api.fetchPosts(payload)
+        this.posts = entries.data.items
+        window.scrollTo(0, 0)
+      } catch (error) {}
+    },
   },
   mounted() {
     this.toggleFilter(0)
@@ -155,26 +174,21 @@ export default {
         this.$refs.toggleIcon.style.transform = 'rotate(-180deg)'
       }
     },
-    async updatePage() {
-      try {
-        const pageLimit = 5
-
-        this.$router.push({
-          path: this.$route.path,
-          query: { page: this.page },
-        })
-
-        const payload = {
-          limit: pageLimit,
-          skip: pageLimit * (this.page - 1),
-        }
-
-        const entries = await api.fetchPosts(payload)
-        this.posts = entries.data.items
-      } catch (error) {}
+    updatePage() {
+      this.$router.push({
+        path: this.$route.path,
+        query: { page: this.page },
+      })
     },
     formatCategory(category) {
       return category.toLowerCase().replace(/\s/g, '-')
+    },
+    toTitleCase(string) {
+      string = string.replace(/-/g, ' ')
+      return string.replace(
+        /\w\S*/g,
+        (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()
+      )
     },
   },
 }
