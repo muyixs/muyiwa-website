@@ -24,11 +24,49 @@
         </svg>
       </button>
       <div ref="filterTags" class="c-blog__filter-tags">
-        <nuxt-link to="" class="c-tag c-tag--selected"> All </nuxt-link>
-        <nuxt-link to="" class="c-tag">Artificial intelligence</nuxt-link>
-        <span class="c-tag">Software architecture</span>
-        <span class="c-tag">Software design</span>
-        <span class="c-tag">Quantum computing</span>
+        <nuxt-link
+          to="/blog"
+          class="c-tag"
+          :class="{ 'is-active': category === '' }"
+        >
+          All
+        </nuxt-link>
+        <nuxt-link
+          :to="{
+            name: 'blog-category-category',
+            params: {
+              category: formatCategory('Software Engineering'),
+            },
+          }"
+          class="c-tag"
+          :class="{ 'is-active': category === 'Software Engineering' }"
+        >
+          Software engineering
+        </nuxt-link>
+        <nuxt-link
+          :to="{
+            name: 'blog-category-category',
+            params: {
+              category: formatCategory('Consumer Goods'),
+            },
+          }"
+          class="c-tag"
+          :class="{ 'is-active': category === 'Consumer Goods' }"
+        >
+          Consumer goods
+        </nuxt-link>
+        <nuxt-link
+          :to="{
+            name: 'blog-category-category',
+            params: {
+              category: formatCategory('Community'),
+            },
+          }"
+          class="c-tag"
+          :class="{ 'is-active': category === 'Community' }"
+        >
+          Community
+        </nuxt-link>
       </div>
     </section>
     <section class="c-blog__posts-wrap">
@@ -60,20 +98,34 @@ import api from '@/utils/api.js'
 
 export default {
   components: {},
-  async asyncData({ query }) {
-    try {
-      const pageLimit = 5
-      const page = query.page || 1
+  async asyncData({ route }) {
+    const toTitleCase = (string) => {
+      string = string.replace(/-/g, ' ')
+      return string.replace(
+        /\w\S*/g,
+        (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()
+      )
+    }
 
-      const payload = {
-        limit: pageLimit,
-        skip: pageLimit * (page - 1),
-      }
+    const category = route.params.category
+      ? toTitleCase(route.params.category)
+      : ''
+    const pageLimit = 5
+    const page = route.query.page || 1
+
+    const payload = {
+      limit: pageLimit,
+      skip: pageLimit * (page - 1),
+      category,
+    }
+
+    try {
       const entries = await api.fetchPosts(payload)
 
       return {
         posts: entries.data.items,
         totalPages: entries.data.total / pageLimit,
+        category,
       }
     } catch (error) {}
   },
@@ -82,10 +134,18 @@ export default {
       page: this.$route.query.page || 1,
     }
   },
-  mounted() {},
+  mounted() {
+    this.toggleFilter(0)
+  },
   methods: {
-    toggleFilter() {
+    toggleFilter(duration) {
       const filterTags = this.$refs.filterTags
+
+      this.$refs.toggleIcon.style.setProperty(
+        '--trans-time',
+        duration === 0 ? 0 : '0.3s'
+      )
+      filterTags.style.setProperty('--trans-time', duration === 0 ? 0 : '0.1s')
 
       if (filterTags.style.maxHeight) {
         filterTags.style.maxHeight = null
@@ -112,6 +172,9 @@ export default {
         const entries = await api.fetchPosts(payload)
         this.posts = entries.data.items
       } catch (error) {}
+    },
+    formatCategory(category) {
+      return category.toLowerCase().replace(/\s/g, '-')
     },
   },
 }
@@ -141,18 +204,25 @@ export default {
       text-transform: uppercase;
 
       svg {
+        --trans-time: 0.3s;
         margin-left: 5px;
         margin-bottom: 1px;
         height: 12px;
-        transition: transform 0.3s $easeOutExpo;
+        transition: transform var(--trans-time) $easeOutExpo;
       }
     }
 
     &-tags {
+      --trans-time: 0.1s;
       margin-top: 28px;
       max-height: 0px;
       overflow: hidden;
-      transition: max-height 0.1s linear;
+      transition: max-height var(--trans-time) linear;
+
+      a.is-active {
+        background-color: $color-navy-blue;
+        color: white;
+      }
     }
   }
 

@@ -11,10 +11,27 @@
     >
       {{ postDetails.fields.title }}
     </nuxt-link>
-    <nuxt-link to="" class="c-tag">
+    <nuxt-link
+      :to="{
+        name: 'blog-category-category',
+        params: {
+          category: formatCategory(postDetails.fields.tag),
+        },
+      }"
+      class="c-tag"
+    >
       {{ postDetails.fields.tag }}
     </nuxt-link>
-    <nuxt-link v-if="postDetails.fields.secondaryTag" to="" class="c-tag">
+    <nuxt-link
+      v-if="postDetails.fields.secondaryTag"
+      :to="{
+        name: 'blog-category-category',
+        params: {
+          category: formatCategory(postDetails.fields.secondaryTag),
+        },
+      }"
+      class="c-tag"
+    >
       {{ postDetails.fields.secondaryTag }}
     </nuxt-link>
   </div>
@@ -32,7 +49,11 @@ export default {
       default: () => {},
     },
   },
-  methods: {},
+  methods: {
+    formatCategory(category) {
+      return category.toLowerCase().replace(/\s/g, '-')
+    },
+  },
 }
 </script>
 

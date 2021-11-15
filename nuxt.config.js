@@ -3,7 +3,7 @@ export default {
   target: 'static',
 
   loading: {
-    height: '3px',
+    height: '4px',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head

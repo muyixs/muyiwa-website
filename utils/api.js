@@ -14,6 +14,7 @@ export default {
         limit: payload?.limit,
         skip: payload?.skip,
         'fields.slug': payload?.slug,
+        'fields.tag': payload?.category
       },
     }),
 }
