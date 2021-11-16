@@ -15,7 +15,10 @@
       </div>
       <div class="c-home__about-image">
         <button>Scroll</button>
-        <img src="@/assets/images/portrait.jpg" alt="Muyiwa's portrait" />
+        <img
+          src="@/assets/images/muyiwa-portrait.jpg"
+          alt="Muyiwa's portrait"
+        />
       </div>
     </section>
     <section class="c-home__interests">
