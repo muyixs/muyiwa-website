@@ -14,38 +14,51 @@
         </p>
       </div>
       <div class="c-home__about-image">
-        <button>Scroll</button>
+        <a href="#section-interests">Scroll</a>
         <img
           src="@/assets/images/muyiwa-portrait.jpg"
           alt="Muyiwa's portrait"
         />
       </div>
     </section>
-    <section class="c-home__interests">
-      <p class="c-home__interests-subtext u-font-regular">
-        I write about blah blah, you can read some interesting articles I’ve
-        written on my <nuxt-link to="/blog">blog</nuxt-link>. I also find a lot
-        of things interesting, but my focus nowadays is on the following;
-      </p>
-      <div class="c-home__interests-child">
-        <h2 class="u-font-h2">Software Engineering</h2>
-        <p class="u-font-regular">
-          Artificial Intelligence, Quantum Computing, Large scale data
-          processing, User understanding
+    <section id="section-interests" class="c-home__interests">
+      <div class="c-home__interests-text">
+        <p class="c-home__interests-subtext u-font-regular">
+          I write about blah blah, you can read some interesting articles I’ve
+          written on my <nuxt-link to="/blog">blog</nuxt-link>. I also find a
+          lot of things interesting, but my focus nowadays is on the following;
         </p>
+        <div class="c-home__interests-child">
+          <h2 class="u-font-h2">Software Engineering</h2>
+          <p class="u-font-regular">
+            Artificial Intelligence, Quantum Computing, Large scale data
+            processing, User understanding
+          </p>
+        </div>
+        <div class="c-home__interests-child">
+          <h2 class="u-font-h2">Consumer Goods</h2>
+          <p class="u-font-regular">
+            Product Design and Manufacturing, Ecommerce, Logistics, Localization
+          </p>
+        </div>
+        <div
+          class="c-home__interests-child"
+          @mouseover="showImage()"
+          @mouseleave="hideImage()"
+        >
+          <h2 class="u-font-h2">Community</h2>
+          <p class="u-font-regular">
+            African economics and politics. People and community development
+            technology.
+          </p>
+        </div>
       </div>
-      <div class="c-home__interests-child">
-        <h2 class="u-font-h2">Consumer Goods</h2>
-        <p class="u-font-regular">
-          Product Design and Manufacturing, Ecommerce, Logistics, Localization
-        </p>
-      </div>
-      <div class="c-home__interests-child">
-        <h2 class="u-font-h2">Community</h2>
-        <p class="u-font-regular">
-          African economics and politics. People and community development
-          technology.
-        </p>
+      <div class="c-home__interests-image">
+        <img
+          ref="communityImage"
+          src="@/assets/images/community.gif"
+          alt="community image"
+        />
       </div>
     </section>
     <section ref="cities" class="c-home__cities">
@@ -176,6 +189,14 @@ export default {
       //   }
       // })
     },
+    showImage() {
+      this.$refs.communityImage.style.setProperty('--opacity', 1)
+      this.$refs.communityImage.style.setProperty('--translate-y', '0%')
+    },
+    hideImage() {
+      this.$refs.communityImage.style.setProperty('--translate-y', '10%')
+      this.$refs.communityImage.style.setProperty('--opacity', 0)
+    },
   },
 }
 </script>
@@ -211,7 +232,11 @@ export default {
         object-fit: cover;
       }
 
-      button {
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         $size: 140px;
         position: absolute;
         right: 0;
@@ -225,14 +250,47 @@ export default {
         font-size: 1.8rem;
         box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
         font-weight: 400;
+        transition: 1.2s $easeOutExpo;
+        text-transform: uppercase;
+
+        &:hover {
+          transform: scale(1.12);
+        }
       }
     }
   }
 
   &__interests {
+    display: flex;
+    position: relative;
+
     margin-top: 100px;
     padding: 100px 0;
     border-top: 1px dashed rgba(0, 0, 0, 0.3);
+
+    &-text {
+      width: fit-content;
+      flex-shrink: 0;
+    }
+
+    &-image {
+      position: absolute;
+      right: 0;
+      transform: rotate(-1.6deg);
+      margin-top: 200px;
+
+      img {
+        --opacity: 0;
+        --translate-y: 10%;
+        height: 600px;
+        width: 435px;
+        object-fit: cover;
+        z-index: -1;
+        opacity: var(--opacity);
+        transform: translateY(var(--translate-y));
+        transition: opacity 0.6s $easeOutExpo, transform 0.8s $easeOutExpo;
+      }
+    }
 
     a {
       color: $color-turquoise;
