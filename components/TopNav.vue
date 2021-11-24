@@ -4,7 +4,7 @@
       <nuxt-link to="/">Olumuyiwa Adenaike</nuxt-link>
     </div>
     <div class="c-nav__right">
-      <a href="">Contact</a>
+      <a href="#section-footer">Contact</a>
       <nuxt-link to="/blog" tag="button" class="c-nav__blog">Blog</nuxt-link>
     </div>
   </div>

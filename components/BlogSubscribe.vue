@@ -22,7 +22,7 @@ export default {
 .c-subscribe {
   display: flex;
   flex-direction: column;
-  margin: 130px 0;
+  margin-top: 130px;
   padding-top: 114px;
   border-top: 1px dashed rgba(0, 0, 0, 0.3);
 

@@ -4,6 +4,7 @@
       <top-nav />
       <Nuxt />
       <div ref="siteLoader" class="c-siteloader" />
+      <base-footer />
     </div>
   </div>
 </template>
