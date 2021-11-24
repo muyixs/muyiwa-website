@@ -53,13 +53,6 @@
           </p>
         </div>
       </div>
-      <div class="c-home__interests-image">
-        <img
-          ref="communityImage"
-          src="@/assets/images/community.gif"
-          alt="community image"
-        />
-      </div>
     </section>
     <section ref="cities" class="c-home__cities">
       <p class="c-home__cities-subtext u-font-regular">
@@ -266,14 +259,6 @@ export default {
           toggleRowAnimation(row, 'running')
         })
       })
-    },
-    showImage() {
-      this.$refs.communityImage.style.setProperty('--opacity', 1)
-      this.$refs.communityImage.style.setProperty('--translate-y', '0%')
-    },
-    hideImage() {
-      this.$refs.communityImage.style.setProperty('--translate-y', '10%')
-      this.$refs.communityImage.style.setProperty('--opacity', 0)
     },
   },
 }
