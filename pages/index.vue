@@ -66,8 +66,7 @@
         I have had the pleasure of living and working in
         <span class="u-font-highlighted">Lagos</span>,
         <span class="u-font-highlighted">San Francisco</span>,
-        <span class="u-font-highlighted">London</span>,
-        <span class="u-font-highlighted">Oakland</span> &
+        <span class="u-font-highlighted">London</span>, and
         <span class="u-font-highlighted">Chicago</span>, and each city has
         shaped my worldview and perspective.
       </p>
@@ -76,28 +75,46 @@
           <span data-text="San Francisco">San Francisco</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="London">London</span>
-          <span data-text="Oakland">Oakland</span>
           <span data-text="Chicago">Chicago</span>
         </div>
         <div class="c-home__cities-wrap">
           <span data-text="San Francisco">San Francisco</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="London">London</span>
-          <span data-text="Oakland">Oakland</span>
           <span data-text="Chicago">Chicago</span>
         </div>
+      </div>
+      <div ref="cityImage" class="c-home__cities-image">
+        <img
+          data-img="San Francisco"
+          src="@/assets/images/cities/san-francisco.jpg"
+          alt="Golden gate bridge image"
+        />
+        <img
+          data-img="Chicago"
+          src="@/assets/images/cities/chicago.jpg"
+          alt="Chicago image"
+        />
+        <img
+          data-img="Lagos"
+          src="@/assets/images/cities/san-francisco.jpg"
+          alt="Lagos image"
+        />
+        <img
+          data-img="London"
+          src="@/assets/images/cities/london.jpg"
+          alt="London image"
+        />
       </div>
       <div class="c-home__cities-row">
         <div class="c-home__cities-wrap">
           <span data-text="Chicago">Chicago</span>
-          <span data-text="Oakland">Oakland</span>
           <span data-text="London">London</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="San Francisco">San Francisco</span>
         </div>
         <div class="c-home__cities-wrap">
           <span data-text="Chicago">Chicago</span>
-          <span data-text="Oakland">Oakland</span>
           <span data-text="London">London</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="San Francisco">San Francisco</span>
@@ -114,7 +131,9 @@ export default {
     return {}
   },
   mounted() {
-    this.initCitiesScroll()
+    setTimeout(() => {
+      this.initCitiesScroll()
+    }, 100)
   },
   methods: {
     initCitiesScroll() {
@@ -124,70 +143,129 @@ export default {
       const citiesRow = this.$refs.cities.querySelectorAll(
         '.c-home__cities-row'
       )
+      const cities = this.$refs.cities.querySelectorAll(
+        '.c-home__cities-row span'
+      )
       const elCount = citiesRow.length
       const timeConstant = 16
 
+      const setAnimationValues = (element) => {
+        // get position of element in parent
+        const index = Array.from(element.parentNode.children).indexOf(element)
+
+        const transitionTime = (index + 1) * timeConstant
+        const translateValue = (index + 1) * 100
+        const xOffset = element.offsetWidth * index
+
+        element.style.setProperty('--translate-value', `${translateValue}%`)
+        element.style.setProperty('--transition-time', `${transitionTime}s`)
+        element.style.setProperty('--offset', `${xOffset}px`)
+      }
+
+      const reset = (element) => {
+        const parent = element.parentNode
+        parent.removeChild(element)
+        parent.appendChild(element)
+        element.style.setProperty(
+          '--offset',
+          `${element.offsetWidth * (elCount - 1)}px`
+        )
+        element.style.setProperty('--translate-value', `${100 * elCount}%`)
+        element.style.setProperty(
+          '--transition-time',
+          `${timeConstant * elCount}s`
+        )
+      }
+
+      const toggleRowAnimation = (row, state) => {
+        row.style.setProperty('--anim-play-state', state)
+      }
+
+      const showCityImage = (city) => {
+        const citiesSectionTopOffset =
+          this.$refs.cities.getBoundingClientRect().top
+        const elRect = city.getBoundingClientRect()
+        const elWidth = elRect.width
+        const elHeight = elRect.height
+        const elOffsetX = elRect.left
+        const elOffsetY = elRect.top
+
+        let xPosition
+        if (elOffsetX < window.innerWidth / 2) {
+          xPosition = elWidth + elOffsetX + 15
+        } else {
+          const cityImageWidth =
+            this.$refs.cityImage.getBoundingClientRect().width
+          xPosition = elOffsetX - cityImageWidth - 15
+        }
+
+        const yPosition =
+          elOffsetY +
+          elHeight / 2 -
+          citiesSectionTopOffset -
+          this.$refs.cityImage.getBoundingClientRect().height / 2
+
+        const selectedCityText = city.getAttribute('data-text')
+        const cityImage = this.$refs.cityImage.querySelector(
+          `img[data-img="${selectedCityText}"]`
+        )
+
+        cityImage.style.setProperty('--opacity', '1')
+        this.$refs.cityImage.style.setProperty('--x-position', `${xPosition}px`)
+        this.$refs.cityImage.style.setProperty('--y-position', `${yPosition}px`)
+      }
+
+      const hideCityImage = (city) => {
+        const yPosition = this.$refs.cityImage.getBoundingClientRect().top + 70
+
+        const selectedCityText = city.getAttribute('data-text')
+        const cityImage = this.$refs.cityImage.querySelector(
+          `img[data-img="${selectedCityText}"]`
+        )
+        cityImage.style.setProperty('--opacity', '0')
+
+        this.$refs.cityImage.style.setProperty('--y-position', `${yPosition}px`)
+      }
+
       citiesWrap.forEach((element) => {
-        const elementWidth = element.offsetWidth
-
-        const setAnimationValues = () => {
-          // get position of element in parent
-          const index = Array.from(element.parentNode.children).indexOf(element)
-
-          const transitionTime = (index + 1) * timeConstant
-          const translateValue = (index + 1) * 100
-          const xOffset = elementWidth * index
-
-          element.style.setProperty('--translate-value', `${translateValue}%`)
-          element.style.setProperty('--transition-time', `${transitionTime}s`)
-          element.style.setProperty('--offset', `${xOffset}px`)
-        }
-
-        const reset = () => {
-          const parent = element.parentNode
-          parent.removeChild(element)
-          parent.appendChild(element)
-          element.style.setProperty(
-            '--offset',
-            `${elementWidth * (elCount - 1)}px`
-          )
-          element.style.setProperty('--translate-value', `${100 * elCount}%`)
-          element.style.setProperty(
-            '--transition-time',
-            `${timeConstant * elCount}s`
-          )
-        }
-
-        setAnimationValues()
+        setAnimationValues(element)
 
         element.addEventListener('animationend', () => {
-          reset()
+          reset(element)
+        })
+      })
+
+      cities.forEach((city) => {
+        city.addEventListener('mouseover', () => {
+          showCityImage(city)
+        })
+
+        city.addEventListener('mouseleave', () => {
+          hideCityImage(city)
+        })
+      })
+
+      citiesRow.forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+          toggleRowAnimation(row, 'paused')
+        })
+
+        row.addEventListener('mouseleave', () => {
+          toggleRowAnimation(row, 'running')
         })
       })
 
       window.addEventListener('blur', () => {
         citiesRow.forEach((row) => {
-          row.style.setProperty('--anim-play-state', 'paused')
+          toggleRowAnimation(row, 'paused')
         })
       })
 
       window.addEventListener('focus', () => {
         citiesRow.forEach((row) => {
-          row.style.setProperty('--anim-play-state', 'running')
+          toggleRowAnimation(row, 'running')
         })
       })
-
-      // document.addEventListener('visibilitychange', () => {
-      //   if (document.visibilityState === 'hidden') {
-      //     citiesRow.forEach((row) => {
-      //       row.style.setProperty('--anim-play-state', 'paused')
-      //     })
-      //   } else {
-      //     citiesRow.forEach((row) => {
-      //       row.style.setProperty('--anim-play-state', 'running')
-      //     })
-      //   }
-      // })
     },
     showImage() {
       this.$refs.communityImage.style.setProperty('--opacity', 1)
@@ -202,6 +280,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .c-footer {
+  display: none;
+}
+
 .c-home {
   padding-top: 13vh;
 
@@ -325,6 +407,7 @@ export default {
     background-position: center;
     color: white;
     padding: 160px 0 350px;
+    overflow: hidden;
 
     &-subtext {
       text-align: center;
@@ -403,26 +486,39 @@ export default {
 
         .c-home__cities-wrap {
           right: var(--offset);
-
-          // > * {
-          //   &::before {
-          //     position: absolute;
-          //     content: attr(data-text);
-          //     top: 0;
-          //     left: 0;
-          //     color: white;
-          //     width: 0%;
-          //     overflow: hidden;
-          //     transition: 0.3s ease-in-out;
-          //   }
-
-          //   &:hover {
-          //     &::before {
-          //       width: 100%;
-          //     }
-          //   }
-          // }
         }
+      }
+    }
+
+    &-image {
+      $size: 300px;
+      --x-position: 0;
+      --y-position: 50%;
+      position: absolute;
+      width: $size;
+      height: $size;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 6;
+      border-radius: 20px;
+      overflow: hidden;
+      transform: rotate(5deg);
+      transform: translate3d(var(--x-position), var(--y-position), 0)
+        rotate(3deg);
+      transition: transform 0.8s $easeOutExpo;
+
+      img {
+        --opacity: 0;
+        position: absolute;
+        border-radius: inherit;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color: whitesmoke;
+        opacity: var(--opacity);
+        transition: opacity 0.6s $easeOutExpo;
       }
     }
   }
