@@ -509,10 +509,3 @@ export default {
   }
 }
 </style>
-
-<style lang="scss">
-.c-footer {
-  margin-top: 0 !important;
-  border-top: 0px !important;
-}
-</style>
