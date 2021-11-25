@@ -50,6 +50,7 @@ export default {
 
     @include screen('small') {
       justify-content: space-between;
+      margin-top: 80px;
     }
 
     > * {

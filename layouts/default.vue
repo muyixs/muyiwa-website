@@ -37,6 +37,14 @@ export default {
 .c-app {
   padding: 0px 12% 30px;
 
+  @media screen and (max-width: 1280px) {
+    padding: 0px 6% 30px;
+  }
+
+  @media screen and (max-width: 960px) {
+    padding: 0px 12% 30px;
+  }
+
   @include screen('small') {
     padding: 0px 30px 30px;
   }

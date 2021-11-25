@@ -41,11 +41,7 @@
             Product Design and Manufacturing, Ecommerce, Logistics, Localization
           </p>
         </div>
-        <div
-          class="c-home__interests-child"
-          @mouseover="showImage()"
-          @mouseleave="hideImage()"
-        >
+        <div class="c-home__interests-child">
           <h2 class="u-font-h2">Community</h2>
           <p class="u-font-regular">
             African economics and politics. People and community development
@@ -276,13 +272,26 @@ export default {
     display: flex;
     justify-content: space-between;
 
+    @media screen and (max-width: 960px) {
+      flex-direction: column;
+    }
+
     &-text {
       width: 50%;
       height: fit-content;
 
+      @media screen and (max-width: 960px) {
+        width: 100%;
+      }
+
       p {
         margin-top: 70px;
         max-width: 560px;
+
+        @media screen and (max-width: 960px) {
+          width: 100%;
+          margin-top: 30px;
+        }
       }
     }
 
@@ -290,13 +299,34 @@ export default {
       width: 49%;
       // background-color: rgb(141, 141, 141);
       margin-top: 75px;
+      margin-left: 30px;
       position: relative;
+      flex-shrink: 0;
+
+      @media screen and (max-width: 1024px) {
+        margin-top: auto;
+      }
+
+      @media screen and (max-width: 960px) {
+        width: 100%;
+        margin: 50px 0 0;
+      }
 
       img {
         width: 90%;
         height: 680px;
         object-position: center bottom;
         object-fit: cover;
+
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+        }
+
+        @media screen and (max-width: 960px) {
+          height: auto;
+          max-height: 680px;
+          object-position: top;
+        }
       }
 
       a {
@@ -320,6 +350,10 @@ export default {
         transition: 1.2s $easeOutExpo;
         text-transform: uppercase;
 
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
+
         &:hover {
           transform: scale(1.12);
         }
@@ -330,10 +364,14 @@ export default {
   &__interests {
     display: flex;
     position: relative;
-
     margin-top: 100px;
     padding: 100px 0;
     border-top: 1px dashed rgba(0, 0, 0, 0.3);
+
+    @include screen('small') {
+      margin-top: 80px;
+      padding-top: 60px;
+    }
 
     &-text {
       width: fit-content;
@@ -372,8 +410,16 @@ export default {
       max-width: 800px;
       margin-top: 100px;
 
+      @include screen('small') {
+        margin-top: 70px;
+      }
+
       &:not(:first-of-type) {
         margin-top: 90px;
+
+        @include screen('small') {
+          margin-top: 65px;
+        }
       }
 
       p {
