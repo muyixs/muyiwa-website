@@ -7,9 +7,11 @@
     </p>
     <div class="c-footer__links">
       <a href="" class="c-footer__links-email">Say hello</a>
-      <a data-text="Twitter" href="">Twitter</a>
-      <a data-text="Github" href="">Github</a>
-      <a data-text="Linkedin" href="">Linkedin</a>
+      <div class="c-footer__links-social">
+        <a data-text="Twitter" href="">Twitter</a>
+        <a data-text="Github" href="">Github</a>
+        <a data-text="Linkedin" href="">Linkedin</a>
+      </div>
     </div>
     <div class="c-footer__credit">
       <span>© {{ new Date().getUTCFullYear() }}</span>
@@ -30,15 +32,25 @@ export default {
   padding-top: 100px;
   border-top: 1px dashed rgba(0, 0, 0, 0.3);
 
+  @include screen('small') {
+    margin-top: 120px;
+    padding-top: 70px;
+  }
+
   &__subtext {
     max-width: 750px;
     margin-top: 40px;
   }
 
   &__links {
+    display: flex;
     margin-top: 100px;
     display: flex;
     align-items: center;
+
+    @include screen('small') {
+      justify-content: space-between;
+    }
 
     > * {
       text-decoration: none;
@@ -46,26 +58,36 @@ export default {
       font-size: 2.6rem;
       font-weight: 400;
 
-      &:not(:first-child) {
-        margin-left: 60px;
+      @include screen('small') {
+        font-size: 2rem;
+      }
+    }
+
+    &-social {
+      display: flex;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      a {
+        text-decoration: none;
         color: inherit;
 
-        position: relative;
-        &::before {
-          position: absolute;
-          content: attr(data-text);
-          top: 0;
-          left: 0;
-          color: $color-turquoise;
-          width: 0%;
-          overflow: hidden;
-          transition: 0.3s ease-in-out;
+        @media screen and (max-width: 768px) {
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
         }
 
-        &:hover {
-          &::before {
-            width: 100%;
+        @include screen('small') {
+          &:not(:last-child) {
+            margin-bottom: 20px;
           }
+        }
+
+        &:not(:last-child) {
+          margin-right: 50px;
         }
       }
     }
@@ -85,6 +107,12 @@ export default {
       color: white;
       font-size: 1.8rem;
       font-weight: 400;
+      margin-right: 60px;
+
+      @include screen('small') {
+        --size: 160px;
+        margin-right: 0px;
+      }
 
       &:hover {
         transform: scale(1.12);
@@ -98,6 +126,10 @@ export default {
     margin-top: 100px;
     text-transform: uppercase;
     font-size: 1.8rem;
+
+    @include screen('small') {
+      font-size: 1.6rem;
+    }
   }
 }
 </style>

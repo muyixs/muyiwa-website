@@ -1,5 +1,17 @@
 <template>
   <div class="c-post">
+    <div class="c-post__tags-mobile">
+      <nuxt-link
+        :to="{
+          name: 'blog-category-category',
+          params: {
+            category: formatCategory(postDetails.fields.tag),
+          },
+        }"
+      >
+        {{ postDetails.fields.tag }}
+      </nuxt-link>
+    </div>
     <nuxt-link
       :to="{
         name: 'blog-article',
@@ -11,29 +23,31 @@
     >
       {{ postDetails.fields.title }}
     </nuxt-link>
-    <nuxt-link
-      :to="{
-        name: 'blog-category-category',
-        params: {
-          category: formatCategory(postDetails.fields.tag),
-        },
-      }"
-      class="c-tag"
-    >
-      {{ postDetails.fields.tag }}
-    </nuxt-link>
-    <nuxt-link
-      v-if="postDetails.fields.secondaryTag"
-      :to="{
-        name: 'blog-category-category',
-        params: {
-          category: formatCategory(postDetails.fields.secondaryTag),
-        },
-      }"
-      class="c-tag"
-    >
-      {{ postDetails.fields.secondaryTag }}
-    </nuxt-link>
+    <div class="c-post__tags">
+      <nuxt-link
+        :to="{
+          name: 'blog-category-category',
+          params: {
+            category: formatCategory(postDetails.fields.tag),
+          },
+        }"
+        class="c-tag"
+      >
+        {{ postDetails.fields.tag }}
+      </nuxt-link>
+      <nuxt-link
+        v-if="postDetails.fields.secondaryTag"
+        :to="{
+          name: 'blog-category-category',
+          params: {
+            category: formatCategory(postDetails.fields.secondaryTag),
+          },
+        }"
+        class="c-tag"
+      >
+        {{ postDetails.fields.secondaryTag }}
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -63,18 +77,53 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+  @media screen and (max-width: 960px) {
+    display: block;
+  }
+
   &:not(:last-child) {
     margin-bottom: 80px;
     padding-bottom: 66px;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+
+    @include screen('small') {
+      margin-bottom: 60px;
+      padding-bottom: 50px;
+    }
   }
 
   &__title {
-    font-size: 4.8rem;
-    width: 74%;
     text-decoration: none;
     color: inherit;
     font-weight: 400;
+    // font-family: 'GT America Condensed';
+  }
+
+  &__tags {
+    flex-shrink: 0;
+    margin-left: 40px;
+
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+
+    &-mobile {
+      display: none;
+
+      > * {
+        font-size: 1.6rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 15px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      @media screen and (max-width: 960px) {
+        display: block;
+      }
+    }
   }
 }
 </style>

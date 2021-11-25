@@ -131,7 +131,7 @@ export default {
 
   &__container {
     width: 100%;
-    max-width: 720px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
@@ -146,6 +146,12 @@ export default {
     text-transform: uppercase;
     font-size: 1.5rem;
     font-weight: 500;
+  }
+
+  &__tag {
+    @include screen('small') {
+      margin-bottom: 10px;
+    }
   }
 
   &__date {
@@ -174,6 +180,11 @@ export default {
     margin-top: 80px;
     font-size: 2.2rem;
     line-height: 36px;
+
+    @include screen('small') {
+      font-size: 2.2rem;
+      line-height: 34px;
+    }
 
     ::v-deep h1,
     ::v-deep h2,
@@ -264,6 +275,10 @@ export default {
 
   &__posts-wrap {
     margin-top: 190px;
+
+    @include screen('small') {
+      margin-top: 150px;
+    }
 
     h3 {
       font-size: 2.4rem;

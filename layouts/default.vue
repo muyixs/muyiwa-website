@@ -37,6 +37,10 @@ export default {
 .c-app {
   padding: 0px 12% 30px;
 
+  @include screen('small') {
+    padding: 0px 30px 30px;
+  }
+
   &__container {
     margin: 0 auto;
     max-width: 1680px;

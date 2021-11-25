@@ -4,7 +4,7 @@
       <nuxt-link to="/">Olumuyiwa Adenaike</nuxt-link>
     </div>
     <div class="c-nav__right">
-      <a href="#section-footer">Contact</a>
+      <a class="c-nav__contact" href="#section-footer">Contact</a>
       <nuxt-link to="/blog" tag="button" class="c-nav__blog">Blog</nuxt-link>
     </div>
   </div>
@@ -31,6 +31,12 @@ export default {
     color: inherit;
   }
 
+  &__contact {
+    @include screen('small') {
+      display: none;
+    }
+  }
+
   &__blog {
     margin-left: 40px;
     background-color: $color-navy-blue;
@@ -40,6 +46,10 @@ export default {
     border-radius: 30px;
     text-transform: inherit;
     font-size: 1.6rem;
+
+    @include screen('small') {
+      padding: 9px 26px;
+    }
   }
 }
 </style>
