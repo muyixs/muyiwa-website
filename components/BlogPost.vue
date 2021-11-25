@@ -87,8 +87,8 @@ export default {
     border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
 
     @include screen('small') {
-      margin-bottom: 60px;
-      padding-bottom: 50px;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
     }
   }
 

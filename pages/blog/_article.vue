@@ -136,8 +136,7 @@ export default {
   }
 
   &__excerpt {
-    margin-top: 24px;
-    // font-size: 2rem;
+    margin: 30px 0 32px;
     line-height: 33px;
   }
 
@@ -155,7 +154,6 @@ export default {
   }
 
   &__date {
-    margin-top: 28px;
     display: flex;
     align-items: center;
 

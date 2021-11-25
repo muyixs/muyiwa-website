@@ -27,8 +27,8 @@ export default {
   border-top: 1px dashed rgba(0, 0, 0, 0.3);
 
   @include screen('small') {
-    margin-top: 60px;
-    padding-top: 80px;
+    margin-top: 45px;
+    padding-top: 60px;
   }
 
   > * {
@@ -54,7 +54,8 @@ export default {
 
       @include screen('small') {
         width: 100%;
-        padding: 22px 30px;
+        padding: 20px 30px;
+        font-size: 2rem;
       }
     }
 
@@ -74,7 +75,7 @@ export default {
         max-width: none;
         margin-left: 0;
         margin-top: 20px;
-        padding: 25px;
+        padding: 22px;
       }
     }
   }

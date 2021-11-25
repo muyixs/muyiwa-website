@@ -1,7 +1,7 @@
 <template>
   <div class="c-blog">
     <h1 class="u-font-h1">Blog</h1>
-    <p class="c-blog__page-subtext">
+    <p class="c-blog__page-subtext u-font-regular">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       Lorem Ipsum has been the industry's standard dummy text ever since the
       1500.
@@ -199,9 +199,9 @@ export default {
   padding-top: 13vh;
 
   &__page-subtext {
-    max-width: 800px;
-    font-size: 2.6rem;
-    line-height: 35px;
+    max-width: 750px;
+    // font-size: 2.6rem;
+    // line-height: 35px;
     margin-top: 30px;
   }
 
@@ -216,6 +216,8 @@ export default {
       background: transparent;
       border: none;
       text-transform: uppercase;
+      color: inherit;
+      padding: 0;
 
       svg {
         --trans-time: 0.3s;
@@ -230,8 +232,17 @@ export default {
       --trans-time: 0.1s;
       margin-top: 28px;
       max-height: 0px;
-      overflow: hidden;
+      overflow-y: hidden;
       transition: max-height var(--trans-time) linear;
+
+      @include screen('small') {
+        display: flex;
+        flex-wrap: wrap;
+
+        .c-tag {
+          margin-bottom: 16px;
+        }
+      }
 
       a.is-active {
         background-color: $color-navy-blue;
@@ -317,6 +328,10 @@ export default {
 
   &__posts-wrap {
     margin-top: 80px;
+
+    @include screen('small') {
+      margin-top: 70px;
+    }
   }
 }
 </style>

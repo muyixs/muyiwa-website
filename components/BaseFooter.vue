@@ -33,8 +33,8 @@ export default {
   border-top: 1px dashed rgba(0, 0, 0, 0.3);
 
   @include screen('small') {
-    margin-top: 120px;
-    padding-top: 70px;
+    margin-top: 90px;
+    padding-top: 60px;
   }
 
   &__subtext {

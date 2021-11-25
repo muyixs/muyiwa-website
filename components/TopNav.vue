@@ -29,6 +29,8 @@ export default {
   a {
     text-decoration: none;
     color: inherit;
+    font-weight: 500;
+    opacity: 0.8;
   }
 
   &__contact {
