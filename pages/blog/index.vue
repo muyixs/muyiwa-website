@@ -196,12 +196,15 @@ export default {
 
 <style lang="scss" scoped>
 .c-blog {
-  padding-top: 13vh;
+  padding: 13vh 0 150px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+
+  @include screen('small') {
+    padding-bottom: 70px;
+  }
 
   &__page-subtext {
     max-width: 750px;
-    // font-size: 2.6rem;
-    // line-height: 35px;
     margin-top: 30px;
   }
 

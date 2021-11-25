@@ -28,13 +28,10 @@ export default {
 
 <style lang="scss" scoped>
 .c-footer {
-  margin: 160px 0 20px;
-  padding-top: 100px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.3);
+  margin: 130px 0 20px;
 
   @include screen('small') {
-    margin-top: 90px;
-    padding-top: 60px;
+    margin-top: 80px;
   }
 
   &__subtext {

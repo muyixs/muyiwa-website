@@ -127,7 +127,12 @@ export default {
 
 <style lang="scss" scoped>
 .c-article {
-  padding-top: 13vh;
+  padding: 13vh 0 150px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+
+  @include screen('small') {
+    padding-bottom: 70px;
+  }
 
   &__container {
     width: 100%;
