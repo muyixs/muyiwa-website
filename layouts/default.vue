@@ -24,7 +24,9 @@ export default {
       img.src = require(`@/assets/images/noise.png`)
 
       img.onload = () => {
-        vm.$refs.siteLoader.style.display = 'none'
+        document.fonts.ready.then(() => {
+          vm.$refs.siteLoader.style.display = 'none'
+        })
       }
     },
   },
