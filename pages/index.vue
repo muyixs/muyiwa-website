@@ -144,7 +144,7 @@ export default {
         this.renderComponent = true
         setTimeout(() => {
           this.initCitiesScroll()
-        }, 100)
+        }, 10)
       })
     },
     initCitiesScroll() {
@@ -250,6 +250,7 @@ export default {
 
       cities.forEach((city) => {
         city.addEventListener('mouseover', () => {
+          if (this.windowWidth < 768) return
           showCityImage(city)
         })
 
@@ -471,13 +472,26 @@ export default {
     background-repeat: repeat;
     background-position: center;
     color: white;
-    padding: 160px 0 350px;
+    padding: 12% 0 27%;
     overflow: hidden;
+
+    @include screen('small') {
+      padding: 90px 0 180px;
+    }
 
     &-subtext {
       text-align: center;
-      width: 720px;
+      max-width: 720px;
       margin: 0 auto;
+      height: 200px;
+
+      @include screen('small') {
+        height: 170px;
+      }
+
+      @include screen('med') {
+        padding: 0 30px;
+      }
 
       .u-font-highlighted {
         color: #37e1ec;
@@ -488,14 +502,18 @@ export default {
       --anim-play-state: running;
       --switch: -1;
       --rotation: rotate(calc(0.6deg * var(--switch)));
-      margin-top: 120px;
+      // margin-top: 120px;
       font-size: 6vw;
       white-space: nowrap;
       transform: var(--rotation);
-      position: relative;
+      // position: relative;
       // width: fit-content;
       width: 100vw;
       height: 100%;
+
+      @include screen('small') {
+        font-size: 5rem;
+      }
 
       &:hover {
         --anim-play-state: paused;
@@ -547,7 +565,11 @@ export default {
 
       &:last-of-type {
         --switch: 1;
-        margin-top: 370px;
+        margin-top: 15%;
+
+        @include screen('small') {
+          margin-top: 25%;
+        }
 
         .c-home__cities-wrap {
           right: var(--offset);
@@ -556,7 +578,7 @@ export default {
     }
 
     &-image {
-      $size: 300px;
+      $size: 18vw;
       --x-position: 0;
       --y-position: 50%;
       position: absolute;
