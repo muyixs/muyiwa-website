@@ -58,7 +58,7 @@ export default {
       font-weight: 400;
 
       @include screen('small') {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
     }
 
