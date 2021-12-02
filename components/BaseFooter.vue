@@ -11,6 +11,7 @@
         <a data-text="Twitter" href="">Twitter</a>
         <a data-text="Github" href="">Github</a>
         <a data-text="Linkedin" href="">Linkedin</a>
+        <a data-text="Resume" href="">Resume</a>
       </div>
     </div>
     <div class="c-footer__credit">
@@ -109,6 +110,7 @@ export default {
 
       @include screen('small') {
         --size: 160px;
+        font-size: 1.7rem;
         margin-right: 0px;
       }
 
