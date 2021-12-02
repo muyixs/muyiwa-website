@@ -255,6 +255,7 @@ export default {
         })
 
         city.addEventListener('mouseleave', () => {
+          if (this.windowWidth < 768) return
           hideCityImage(city)
         })
       })
@@ -286,6 +287,7 @@ export default {
       })
 
       window.addEventListener('mousemove', () => {
+        if (this.windowWidth < 768) return
         if (windowIsActive) return
 
         citiesRow.forEach((row) => {
@@ -476,7 +478,7 @@ export default {
     overflow: hidden;
 
     @include screen('small') {
-      padding: 90px 0 180px;
+      padding: 90px 0 150px;
     }
 
     &-subtext {
@@ -487,6 +489,10 @@ export default {
 
       @include screen('small') {
         height: 170px;
+      }
+
+      @media screen and (max-width: 480px) {
+        height: 240px;
       }
 
       @include screen('med') {
@@ -512,7 +518,7 @@ export default {
       height: 100%;
 
       @include screen('small') {
-        font-size: 5rem;
+        font-size: 4.2rem;
       }
 
       &:hover {
@@ -569,6 +575,10 @@ export default {
 
         @include screen('small') {
           margin-top: 25%;
+        }
+
+        @media screen and (max-width: 480px) {
+          margin-top: 30%;
         }
 
         .c-home__cities-wrap {
