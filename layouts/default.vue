@@ -2,8 +2,8 @@
   <div class="c-app">
     <div class="c-app__container">
       <top-nav />
-      <Nuxt />
-      <div ref="siteLoader" class="c-siteloader" />
+      <Nuxt v-if="showPage" />
+      <div v-else ref="siteLoader" class="c-siteloader" />
       <base-footer />
     </div>
   </div>
@@ -12,7 +12,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      showPage: false,
+    }
   },
   mounted() {
     this.loadNoiseBackground()
@@ -25,7 +27,8 @@ export default {
 
       img.onload = () => {
         document.fonts.ready.then(() => {
-          vm.$refs.siteLoader.style.display = 'none'
+          // vm.$refs.siteLoader.style.display = 'none'
+          vm.showPage = true
         })
       }
     },
