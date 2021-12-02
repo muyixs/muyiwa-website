@@ -64,7 +64,7 @@ export default {
       max-width: 200px;
       border-radius: 10px;
       border: none;
-      color: $color-pastel-brown;
+      color: white;
       font-weight: 500;
       background: $color-navy-blue;
       margin-left: 20px;

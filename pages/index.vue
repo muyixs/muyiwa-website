@@ -50,7 +50,7 @@
         </div>
       </div>
     </section>
-    <section ref="cities" class="c-home__cities">
+    <section v-if="renderComponent" ref="cities" class="c-home__cities">
       <p class="c-home__cities-subtext u-font-regular">
         I have had the pleasure of living and working in
         <span class="u-font-highlighted">Lagos</span>,
@@ -117,15 +117,39 @@
 export default {
   components: {},
   data() {
-    return {}
+    return {
+      windowWidth: '',
+      renderComponent: true,
+    }
   },
   mounted() {
-    setTimeout(() => {
-      this.initCitiesScroll()
-    }, 100)
+    this.windowWidth = window.innerWidth
+    this.initCitiesScroll()
+
+    window.addEventListener('resize', () => {
+      const currentWidth = window.innerWidth
+      if (this.windowWidth !== currentWidth) {
+        this.forceRerender()
+        this.windowWidth = currentWidth
+      }
+    })
   },
   methods: {
+    forceRerender() {
+      // Remove my-component from the DOM
+      this.renderComponent = false
+
+      this.$nextTick(() => {
+        // Add the component back in
+        this.renderComponent = true
+        setTimeout(() => {
+          this.initCitiesScroll()
+        }, 100)
+      })
+    },
     initCitiesScroll() {
+      let timestamp
+      let windowIsActive = true
       const citiesWrap = this.$refs.cities.querySelectorAll(
         '.c-home__cities-wrap'
       )
@@ -248,12 +272,26 @@ export default {
         citiesRow.forEach((row) => {
           toggleRowAnimation(row, 'paused')
         })
+        windowIsActive = false
+        timestamp = Date.now()
       })
 
       window.addEventListener('focus', () => {
+        const elapsedTime = (Date.now() - timestamp) / 1000
+        // call re-render if user has been away from the tab for more than 10 seconds
+        if (elapsedTime > 10) {
+          this.forceRerender()
+        }
+      })
+
+      window.addEventListener('mousemove', () => {
+        if (windowIsActive) return
+
         citiesRow.forEach((row) => {
           toggleRowAnimation(row, 'running')
         })
+
+        windowIsActive = true
       })
     },
   },
@@ -261,10 +299,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .c-footer {
-  display: none;
-}
-
 .c-home {
   padding-top: 13vh;
 
