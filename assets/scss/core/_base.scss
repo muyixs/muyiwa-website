@@ -17,15 +17,13 @@ html {
 }
 
 body {
+  --bg-color: var(--color-pastel-blue);
   font-size: 1.6rem;
-  background-color: $color-pastel-blue;
+  background-color: var(--bg-color);
   background-image: url('@/assets/images/noise.png');
   background-repeat: repeat;
   overflow-x: hidden;
-
-  // @media screen and (min-width: 1920px) {
-  //   font-size: 0.95vw;
-  // }
+  transition: background 0.6s linear;;
 }
 
 input,

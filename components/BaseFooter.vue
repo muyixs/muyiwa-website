@@ -16,14 +16,35 @@
     </div>
     <div class="c-footer__credit">
       <span>© {{ new Date().getUTCFullYear() }}</span>
-      <span>Lorem ipsum dolor sit</span>
+      <button @click="changeTheme()">Change theme</button>
     </div>
   </section>
 </template>
 
 <script>
 export default {
-  methods: {},
+  data() {
+    return {
+      backgroundIsBlue: true,
+    }
+  },
+  methods: {
+    changeTheme() {
+      if (this.backgroundIsBlue) {
+        document.body.style.setProperty(
+          '--bg-color',
+          'var(--color-pastel-brown)'
+        )
+      } else {
+        document.body.style.setProperty(
+          '--bg-color',
+          'var(--color-pastel-blue)'
+        )
+      }
+
+      this.backgroundIsBlue = !this.backgroundIsBlue
+    },
+  },
 }
 </script>
 
@@ -129,6 +150,12 @@ export default {
 
     @include screen('small') {
       font-size: 1.6rem;
+    }
+
+    button {
+      font-size: inherit;
+      background: none;
+      border: none;
     }
   }
 }

@@ -66,6 +66,6 @@ export default {
   height: 100vh;
   top: 0;
   left: 0;
-  background: $color-pastel-blue;
+  background: var(--color-pastel-blue);
 }
 </style>
