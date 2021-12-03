@@ -177,17 +177,35 @@ export default {
 
       const reset = (element) => {
         const parent = element.parentNode
-        parent.removeChild(element)
-        parent.appendChild(element)
-        element.style.setProperty(
-          '--offset',
-          `${element.offsetWidth * (elCount - 1)}px`
-        )
-        element.style.setProperty('--translate-value', `${100 * elCount}%`)
-        element.style.setProperty(
-          '--transition-time',
-          `${timeConstant * elCount}s`
-        )
+        const clone = element.cloneNode(true)
+        parent.replaceChild(clone, element)
+
+        setTimeout(() => {
+          clone.style.setProperty(
+            '--offset',
+            `${clone.offsetWidth * (elCount - 1)}px`
+          )
+          clone.style.setProperty('--translate-value', `${100 * elCount}%`)
+          clone.style.setProperty(
+            '--transition-time',
+            `${timeConstant * elCount}s`
+          )
+
+          clone.addEventListener('animationend', () => {
+            reset(clone)
+          })
+        }, 50)
+        // parent.appendChild(element)
+        // setAnimationValues(clone)
+        // clone.style.setProperty(
+        //   '--offset',
+        //   `${element.offsetWidth * (elCount - 1)}px`
+        // )
+        // clone.style.setProperty('--translate-value', `${100 * elCount}%`)
+        // clone.style.setProperty(
+        //   '--transition-time',
+        //   `${timeConstant * elCount}s`
+        // )
       }
 
       const toggleRowAnimation = (row, state) => {
@@ -528,12 +546,20 @@ export default {
       .c-home__cities-wrap {
         --direction: var(--switch);
         display: inline-block;
+        -webkit-animation: scrollText var(--transition-time) linear;
+        -webkit-animation-play-state: var(--anim-play-state);
         animation: scrollText var(--transition-time) linear;
         animation-play-state: var(--anim-play-state);
         position: absolute;
         top: 0;
 
         @keyframes scrollText {
+          to {
+            transform: translateX(calc(var(--translate-value) * var(--switch)));
+          }
+        }
+
+        @-webkit-keyframes scrollText {
           to {
             transform: translateX(calc(var(--translate-value) * var(--switch)));
           }
