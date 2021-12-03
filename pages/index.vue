@@ -1,8 +1,15 @@
 <template>
   <div class="c-home">
-    <section class="c-home__about">
+    <section ref="sectionAbout" class="c-home__about">
       <div class="c-home__about-text">
-        <h1 class="u-font-h1">HI, I’M OLUMUYIWA ADENAIKE</h1>
+        <h1 class="u-font-h1">
+          <span>H</span><span>I</span><span>,</span> <span>I’</span
+          ><span>M</span> <span>O</span><span>L</span><span>U</span
+          ><span>M</span><span>U</span><span>Y</span><span>I</span><span>W</span
+          ><span>A</span> <span>A</span><span>D</span><span>E</span
+          ><span>N</span><span>A</span><span>I</span><span>K</span
+          ><span>E</span>
+        </h1>
         <p class="u-font-regular">
           Welcome to my blog and personal site, a place to learn more about me
           and the many things that pique my interest. I’m a
@@ -13,12 +20,14 @@
           about technology and the many opportunities it creates.
         </p>
       </div>
+      <a href="#section-interests">Scroll</a>
       <div class="c-home__about-image">
-        <a href="#section-interests">Scroll</a>
-        <img
-          src="@/assets/images/muyiwa-portrait.jpg"
-          alt="Muyiwa's portrait"
-        />
+        <div>
+          <img
+            src="@/assets/images/muyiwa-portrait.jpg"
+            alt="Muyiwa's portrait"
+          />
+        </div>
       </div>
     </section>
     <section id="section-interests" class="c-home__interests">
@@ -124,6 +133,7 @@ export default {
   },
   mounted() {
     this.windowWidth = window.innerWidth
+    // this.initHeroAnimation()
     this.initCitiesScroll()
 
     window.addEventListener('resize', () => {
@@ -132,6 +142,12 @@ export default {
         this.forceRerender()
         this.windowWidth = currentWidth
       }
+    })
+
+    const nameEl = document.getElementsByClassName('u-font-h1')
+    const spanArr = nameEl[0].querySelectorAll('span')
+    spanArr.forEach((element) => {
+      element.setAttribute('data-text', element.innerHTML)
     })
   },
   methods: {
@@ -146,6 +162,19 @@ export default {
           this.initCitiesScroll()
         }, 10)
       })
+    },
+    initHeroAnimation() {
+      const nameString = this.$refs.sectionAbout.querySelector('h1').textContent
+      const charArray = [...nameString]
+      const innerContent = []
+
+      charArray.forEach((char) => {
+        if (char === ' ') return
+        innerContent.push(`<span>${char}</span>`)
+      })
+
+      this.$refs.sectionAbout.querySelector('h1').innerHTML =
+        innerContent.join('')
     },
     initCitiesScroll() {
       let timestamp
@@ -326,6 +355,7 @@ export default {
   &__about {
     display: flex;
     justify-content: space-between;
+    position: relative;
 
     @media screen and (max-width: 960px) {
       flex-direction: column;
@@ -339,9 +369,62 @@ export default {
         width: 100%;
       }
 
+      @keyframes reveal {
+        to {
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      h1 span {
+        --delay: 0.1s;
+        position: relative;
+        display: inline-block;
+        transform: translateY(50%);
+        opacity: 0;
+        animation: reveal 0.6s $easeOutExpo forwards var(--delay),
+          fadeIn 0.8s linear forwards var(--delay);
+
+        @for $i from 1 through 24 {
+          &:nth-child(#{$i}) {
+            --delay: #{$i * 0.06s};
+          }
+        }
+
+        // &::before {
+        //   position: absolute;
+        //   content: attr(data-text);
+        //   width: 100%;
+        //   height: 100%;
+        //   transform: translateY(100%);
+        //   left: 0;
+        // }
+
+        // &::after {
+        //   position: absolute;
+        //   content: '';
+        //   z-index: 10;
+        //   width: 100%;
+        //   height: 100%;
+        //   left: 0;
+        //   top: 0;
+        //   transform: translateY(100%);
+        //   background-color: var(--bg-color);
+        // }
+      }
+
       p {
         margin-top: 70px;
         max-width: 560px;
+        opacity: 0;
+        // transform: translateY(5%);
+
+        animation: fadeIn 1.2s linear forwards 1.5s;
 
         @media screen and (max-width: 960px) {
           width: 100%;
@@ -350,13 +433,53 @@ export default {
       }
     }
 
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      $size: 140px;
+      position: absolute;
+      right: 0;
+      bottom: 100px;
+      width: $size;
+      height: $size;
+      border-radius: 100px;
+      border: none;
+      background-color: $color-navy-blue;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
+      font-weight: 400;
+      transition: 1.2s $easeOutExpo;
+      text-transform: uppercase;
+      z-index: 2;
+      transform: scale(0);
+
+      animation: scaleup 0.6s $easeOutExpo 2.2s forwards;
+
+      @keyframes scaleup {
+        to {
+          transform: scale(1);
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
+
+      &:hover {
+        transform: scale(1.12);
+      }
+    }
+
     &-image {
       width: 49%;
-      // background-color: rgb(141, 141, 141);
       margin-top: 75px;
       margin-left: 30px;
       position: relative;
       flex-shrink: 0;
+      margin-right: auto;
 
       @media screen and (max-width: 1024px) {
         margin-top: auto;
@@ -367,11 +490,10 @@ export default {
         margin: 50px 0 0;
       }
 
-      img {
+      div {
         width: 90%;
         height: 680px;
-        object-position: center bottom;
-        object-fit: cover;
+        overflow: hidden;
 
         @media screen and (max-width: 1024px) {
           width: 100%;
@@ -382,35 +504,28 @@ export default {
           max-height: 680px;
           object-position: top;
         }
-      }
 
-      a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        $size: 140px;
-        position: absolute;
-        right: 0;
-        bottom: 100px;
-        width: $size;
-        height: $size;
-        border-radius: 100px;
-        border: none;
-        background-color: $color-navy-blue;
-        color: white;
-        font-size: 1.8rem;
-        box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.3);
-        font-weight: 400;
-        transition: 1.2s $easeOutExpo;
-        text-transform: uppercase;
+        img {
+          width: 100%;
+          height: 100%;
+          object-position: center bottom;
+          object-fit: cover;
+          transform: scale(1.14);
+          opacity: 0;
+          animation: scaledown 1.2s $easeOutExpo 1.5s forwards,
+            fadeIn 0.7s 1.5s forwards;
 
-        @media screen and (max-width: 1024px) {
-          display: none;
-        }
+          @keyframes scaledown {
+            to {
+              transform: scale(1);
+            }
+          }
 
-        &:hover {
-          transform: scale(1.12);
+          @keyframes fadeIn {
+            to {
+              opacity: 1;
+            }
+          }
         }
       }
     }

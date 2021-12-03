@@ -156,6 +156,7 @@ export default {
       font-size: inherit;
       background: none;
       border: none;
+      color: inherit;
     }
   }
 }

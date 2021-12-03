@@ -27,7 +27,6 @@ export default {
 
       img.onload = () => {
         document.fonts.ready.then(() => {
-          // vm.$refs.siteLoader.style.display = 'none'
           vm.showPage = true
         })
       }
