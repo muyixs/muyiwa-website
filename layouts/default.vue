@@ -123,6 +123,10 @@ export default {
     transform: translateY(var(--translate-y));
     transition: transform 0.8s $easeOutExpo 0.9s;
 
+    @include screen('small') {
+      font-size: 1.9rem;
+    }
+
     &::before {
       content: '';
       position: absolute;
