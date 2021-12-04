@@ -8,9 +8,8 @@
     <div class="c-footer__links">
       <a href="" class="c-footer__links-email">Say hello</a>
       <div class="c-footer__links-social">
-        <a data-text="Twitter" href="">Twitter</a>
-        <a data-text="Github" href="">Github</a>
         <a data-text="Linkedin" href="">Linkedin</a>
+        <a data-text="Twitter" href="">Twitter</a>
         <a data-text="Resume" href="">Resume</a>
       </div>
     </div>
