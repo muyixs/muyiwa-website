@@ -27,6 +27,12 @@ export default {
       backgroundIsBlue: true,
     }
   },
+  mounted() {
+    const bgColor = localStorage.getItem('theme')
+    if (bgColor !== 'var(--color-pastel-blue)') {
+      this.backgroundIsBlue = false
+    }
+  },
   methods: {
     changeTheme() {
       const bgColor = this.backgroundIsBlue
