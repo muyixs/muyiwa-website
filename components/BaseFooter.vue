@@ -8,14 +8,14 @@
     <div class="c-footer__links">
       <a href="" class="c-footer__links-email">Say hello</a>
       <div class="c-footer__links-social">
-        <a data-text="Linkedin" href="">Linkedin</a>
-        <a data-text="Twitter" href="">Twitter</a>
-        <a data-text="Resume" href="">Resume</a>
+        <a class="c-link" data-text="Linkedin" href="">Linkedin</a>
+        <a class="c-link" data-text="Twitter" href="">Twitter</a>
+        <a class="c-link" data-text="Resume" href="">Resume</a>
       </div>
     </div>
     <div class="c-footer__credit">
       <span>© {{ new Date().getUTCFullYear() }}</span>
-      <button @click="changeTheme()">Change theme</button>
+      <button class="c-link" @click="changeTheme()">Change theme</button>
     </div>
   </section>
 </template>

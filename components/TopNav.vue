@@ -1,10 +1,10 @@
 <template>
   <div class="c-nav">
     <div class="c-nav__left">
-      <nuxt-link to="/">Olumuyiwa Adenaike</nuxt-link>
+      <nuxt-link to="/" class="c-link">Olumuyiwa Adenaike</nuxt-link>
     </div>
     <div class="c-nav__right">
-      <a class="c-nav__contact" href="#section-footer">Contact</a>
+      <a class="c-nav__contact c-link" href="#section-footer">Contact</a>
       <nuxt-link to="/blog" tag="button" class="c-nav__blog">Blog</nuxt-link>
     </div>
   </div>
@@ -27,8 +27,6 @@ export default {
   font-weight: 400;
 
   a {
-    text-decoration: none;
-    color: inherit;
     font-weight: 500;
     opacity: 0.8;
   }
