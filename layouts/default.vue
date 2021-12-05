@@ -25,8 +25,8 @@ export default {
   },
   mounted() {
     this.setTheme()
-    this.preloadAssets()
     this.startCounter()
+    this.preloadAssets()
   },
   methods: {
     setTheme() {
@@ -56,9 +56,9 @@ export default {
           clearInterval(counter)
           setTimeout(() => {
             this.hideLoader()
-          }, 1000)
+          }, 800)
         }
-      }, 700)
+      }, 500)
     },
     hideLoader() {
       this.$refs.loaderText.style.setProperty('--transform-origin', 'right')
@@ -67,7 +67,7 @@ export default {
 
       setTimeout(() => {
         this.showPage = true
-      }, 1800)
+      }, 1500)
     },
   },
 }
