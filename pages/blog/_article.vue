@@ -34,40 +34,50 @@ import months from '@/utils/months'
 
 export default {
   components: {},
-  async asyncData({ params }) {
+  async asyncData({ params, payload }) {
+    let assets = []
+    const renderOptions = {
+      renderNode: {
+        [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+          const asset = assets.filter(
+            (asset) => asset.sys.id === node.data.target.sys.id
+          )[0]
+
+          switch (asset.fields.file.contentType) {
+            case 'image/png':
+              return `<img
+                  title="${asset.fields.title}"
+                  src="${`https:${asset.fields.file.url}`}"
+                  alt="${asset.fields.description}"
+                />`
+
+            case 'image/gif':
+              return `<img
+                  title="${asset.fields.title}"
+                  src="${`https:${asset.fields.file.url}`}"
+                  alt="${asset.fields.description}"
+                />`
+
+            default:
+              break
+          }
+        },
+      },
+    }
+
+    if (payload) {
+      assets = payload.includes.Asset
+
+      return {
+        post: payload,
+        postBody: documentToHtmlString(payload.fields.body, renderOptions),
+      }
+    }
+
     try {
       const entries = await api.fetchPosts({ slug: params.article })
       const post = entries.data.items[0]
-      const assets = entries.data.includes.Asset
-
-      const renderOptions = {
-        renderNode: {
-          [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
-            const asset = assets.filter(
-              (asset) => asset.sys.id === node.data.target.sys.id
-            )[0]
-
-            switch (asset.fields.file.contentType) {
-              case 'image/png':
-                return `<img
-                  title="${asset.fields.title}"
-                  src="${`https:${asset.fields.file.url}`}"
-                  alt="${asset.fields.description}"
-                />`
-
-              case 'image/gif':
-                return `<img
-                  title="${asset.fields.title}"
-                  src="${`https:${asset.fields.file.url}`}"
-                  alt="${asset.fields.description}"
-                />`
-
-              default:
-                break
-            }
-          },
-        },
-      }
+      assets = entries.data.includes.Asset
 
       return {
         post,
