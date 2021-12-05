@@ -1,3 +1,5 @@
+import api from './utils/api.js'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -86,4 +88,17 @@ export default {
       '~/assets/scss/mixins/_mediaqueries.scss',
     ],
   },
+  generate: {
+    async routes() {
+      try {
+        const entries = await api.fetchPosts()
+        return entries.data.items.map((entry) => {
+          return {
+            route: `blog/${entry.fields.slug}`,
+            payload: entry
+          }
+        })
+      } catch (error) { }
+    }
+  }
 }
