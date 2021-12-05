@@ -5,8 +5,19 @@
       writing down what I find. Subscribe to get new stories by email. I love
       you.
     </p>
-    <form action="">
-      <input type="email" placeholder="Enter your email address" required />
+    <form
+      id="mc-embedded-subscribe-form"
+      action="https://olumuyiwa.us20.list-manage.com/subscribe/post?u=c3bb4a9729ecf903a98093cc8&amp;id=dda907c6ca"
+      method="post"
+      name="mc-embedded-subscribe-form"
+    >
+      <input
+        id="mce-EMAIL"
+        name="EMAIL"
+        type="email"
+        placeholder="Enter your email address"
+        required
+      />
       <button type="submit">Subscribe</button>
     </form>
   </div>
@@ -49,7 +60,7 @@ export default {
       font-size: 2.2rem;
       padding: 30px 40px;
       border-radius: 10px;
-      background: transparent;
+      background-color: transparent;
       border: 1px solid $color-navy-blue;
 
       @include screen('small') {
