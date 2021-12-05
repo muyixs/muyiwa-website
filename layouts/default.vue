@@ -24,10 +24,15 @@ export default {
     }
   },
   mounted() {
+    this.setTheme()
     this.preloadAssets()
     this.startCounter()
   },
   methods: {
+    setTheme() {
+      const bgColor = localStorage.getItem('theme')
+      document.body.style.setProperty('--bg-color', bgColor)
+    },
     preloadAssets() {
       const vm = this
       const img = new Image()
@@ -98,7 +103,7 @@ export default {
   height: 100vh;
   top: 0;
   left: 0;
-  background: var(--color-pastel-blue);
+  background: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -29,19 +29,12 @@ export default {
   },
   methods: {
     changeTheme() {
-      if (this.backgroundIsBlue) {
-        document.body.style.setProperty(
-          '--bg-color',
-          'var(--color-pastel-brown)'
-        )
-      } else {
-        document.body.style.setProperty(
-          '--bg-color',
-          'var(--color-pastel-blue)'
-        )
-      }
-
+      const bgColor = this.backgroundIsBlue
+        ? 'var(--color-pastel-brown)'
+        : 'var(--color-pastel-blue)'
+      document.body.style.setProperty('--bg-color', bgColor)
       this.backgroundIsBlue = !this.backgroundIsBlue
+      localStorage.setItem('theme', bgColor)
     },
   },
 }
