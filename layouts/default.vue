@@ -25,8 +25,12 @@ export default {
   },
   mounted() {
     this.setTheme()
-    this.startCounter()
     this.preloadAssets()
+    if (this.$route.path === '/') {
+      this.startCounter()
+    } else {
+      this.showPage = true
+    }
   },
   methods: {
     setTheme() {
