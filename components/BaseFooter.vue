@@ -6,7 +6,7 @@
       typesetting industry. Lorem Ipsum has. Some of the interesting.
     </p>
     <div class="c-footer__links">
-      <a href="" class="c-footer__links-email">
+      <a href="mailto:muyixs@gmail.com" class="c-footer__links-email">
         <svg
           width="135"
           height="135"
@@ -33,7 +33,14 @@
         <span>say hello</span>
       </a>
       <div class="c-footer__links-social">
-        <a class="c-link" data-text="Linkedin" href="">Linkedin</a>
+        <a
+          href="https://www.linkedin.com/in/madenaike"
+          target="_blank"
+          class="c-link"
+          data-text="Linkedin"
+        >
+          Linkedin
+        </a>
         <a class="c-link" data-text="Twitter" href="">Twitter</a>
         <a class="c-link" data-text="Resume" href="">Resume</a>
       </div>
