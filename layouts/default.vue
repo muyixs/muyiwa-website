@@ -190,7 +190,7 @@ export default {
     font-variant-numeric: tabular-nums;
 
     @include screen('small') {
-      font-size: 1.9rem;
+      font-size: 2rem;
     }
   }
 }
