@@ -2,9 +2,8 @@
   <div class="c-blog">
     <h1 class="u-font-h1">Blog</h1>
     <p class="c-blog__page-subtext u-font-regular">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industry's standard dummy text ever since the
-      1500.
+      This is where I write about topics that I find interesting. Enjoy the
+      read.
     </p>
     <section class="c-blog__filter">
       <button class="c-blog__filter-toggle" @click="toggleFilter()">

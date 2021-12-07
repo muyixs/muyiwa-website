@@ -2,8 +2,8 @@
   <section id="section-footer" class="c-footer">
     <h1 class="u-font-h1">CONTACT</h1>
     <p class="c-footer__subtext u-font-regular">
-      Feel free to uy interests ar is simply dummy text of the printing and
-      typesetting industry. Lorem Ipsum has. Some of the interesting.
+      Feel free to reach out to me if you have interesting things you'd like to
+      share.
     </p>
     <div class="c-footer__links">
       <a href="mailto:muyixs@gmail.com" class="c-footer__links-email">

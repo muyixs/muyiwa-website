@@ -1,9 +1,8 @@
 <template>
   <div class="c-subscribe">
     <p class="u-font-regular">
-      Mostly amusing myself on here tbh! Turning over cool-looking rocks and
-      writing down what I find. Subscribe to get new stories by email. I love
-      you.
+      Subscribe to my newsletter to get new updates by email on the latest
+      topics and artciles I write about.
     </p>
     <form
       id="mc-embedded-subscribe-form"
