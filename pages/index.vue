@@ -16,13 +16,15 @@
           </div>
         </h1>
         <p class="u-font-regular">
-          Welcome to my blog and personal site, a place to learn more about me
-          and the many things that pique my interest. I’m a
-          <span class="u-font-highlighted">Software engineer</span>, currently
-          living in San Francisco, California, where I work as a senior software
-          engineer on <span class="u-font-highlighted">Google search</span>. I
-          was born & raised in Lagos, Nigeria, and I’m incredibly passionate
-          about technology and the many opportunities it creates.
+          Welcome to my personal site and blog, a place to learn about me and
+          the many things that pique my interest. I was born and raised in
+          Lagos, Nigeria and I have had the opportunity to live and work on
+          three continents so far. Currently, I live in the Bay Area, working as
+          a
+          <span class="u-font-highlighted">Senior Software Engineer</span> on
+          <span class="u-font-highlighted">Google search</span>. I am incredibly
+          passionate about technology, people and the many intriguing ways they
+          intersect.
         </p>
       </div>
       <a class="c-home__about-scroll" href="#section-interests">Scroll</a>
@@ -38,28 +40,34 @@
     <section id="section-interests" class="c-home__interests">
       <div class="c-home__interests-text">
         <p class="c-home__interests-subtext u-font-regular">
-          I write about blah blah, you can read some interesting articles I’ve
-          written on my <nuxt-link to="/blog">blog</nuxt-link>. I also find a
-          lot of things interesting, but my focus nowadays is on the following;
+          This <nuxt-link to="blog">blog</nuxt-link> exists as a vehicle to hone
+          my voice and shape my perspective on issues I am passionate and
+          curious about, and also to provide people an insight into who I
+          am—which I believe will be ever more crucial in the coming future. I
+          primarily write about the following topics and themes:
         </p>
         <div class="c-home__interests-child">
-          <h2 class="u-font-h2">Software Engineering</h2>
+          <h2 class="u-font-h2">My Identity</h2>
           <p class="u-font-regular">
-            Artificial Intelligence, Quantum Computing, Large scale data
-            processing, User understanding
+            Who I am, What motivates me, My vision for the future, The things I
+            do well and the things I can be better at. The things I encounter
+            and the many thoughts I have.
           </p>
         </div>
         <div class="c-home__interests-child">
-          <h2 class="u-font-h2">Consumer Goods</h2>
+          <h2 class="u-font-h2">People and Community</h2>
           <p class="u-font-regular">
-            Product Design and Manufacturing, Ecommerce, Logistics, Localization
+            Designing an equitable future. Africa, her past, present and the
+            role she will play in the future. My path to understanding religion
+            and philosophy. Life from an immigrant perspective. Economics, Race
+            and World politics.
           </p>
         </div>
         <div class="c-home__interests-child">
-          <h2 class="u-font-h2">Community</h2>
+          <h2 class="u-font-h2">Computer Science</h2>
           <p class="u-font-regular">
-            African economics and politics. People and community development
-            technology.
+            Advancements, technologies, frameworks and languages. Start ups and
+            disruptive thinking. Anecdotes. Personal projects.
           </p>
         </div>
       </div>
@@ -431,7 +439,7 @@ export default {
       $size: 140px;
       position: absolute;
       right: 0;
-      bottom: 100px;
+      top: 515px;
       width: $size;
       height: $size;
       border-radius: 100px;
