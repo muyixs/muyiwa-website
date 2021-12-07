@@ -96,7 +96,11 @@ export default {
     text-decoration: none;
     color: inherit;
     font-weight: 400;
-    // font-family: 'GT America Condensed';
+    transition: color 0.5s ease-out;
+
+    &:hover {
+      color: $color-turquoise;
+    }
   }
 
   &__tags {
