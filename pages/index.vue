@@ -3,12 +3,17 @@
     <section ref="sectionAbout" class="c-home__about">
       <div class="c-home__about-text">
         <h1 class="u-font-h1">
-          <span>H</span><span>I</span><span>,</span> <span>I’</span
-          ><span>M</span> <span>O</span><span>L</span><span>U</span
-          ><span>M</span><span>U</span><span>Y</span><span>I</span><span>W</span
-          ><span>A</span> <span>A</span><span>D</span><span>E</span
-          ><span>N</span><span>A</span><span>I</span><span>K</span
-          ><span>E</span>
+          <div><span>H</span><span>I</span><span>,</span></div>
+          <div><span>I’</span><span>M</span></div>
+          <div>
+            <span>O</span><span>L</span><span>U</span><span>M</span
+            ><span>U</span><span>Y</span><span>I</span><span>W</span
+            ><span>A</span>
+          </div>
+          <div>
+            <span>A</span><span>D</span><span>E</span><span>N</span
+            ><span>A</span><span>I</span><span>K</span><span>E</span>
+          </div>
         </h1>
         <p class="u-font-regular">
           Welcome to my blog and personal site, a place to learn more about me
@@ -20,7 +25,7 @@
           about technology and the many opportunities it creates.
         </p>
       </div>
-      <a href="#section-interests">Scroll</a>
+      <a class="c-home__about-scroll" href="#section-interests">Scroll</a>
       <div class="c-home__about-image">
         <div>
           <img
@@ -381,41 +386,26 @@ export default {
         }
       }
 
-      h1 span {
-        --delay: 0.1s;
-        position: relative;
-        display: inline-block;
-        transform: translateY(50%);
-        opacity: 0;
-        animation: reveal 0.6s $easeOutExpo forwards var(--delay),
-          fadeIn 0.8s linear forwards var(--delay);
-
-        @for $i from 1 through 24 {
-          &:nth-child(#{$i}) {
-            --delay: #{$i * 0.06s};
-          }
+      h1 {
+        div {
+          display: inline-block;
         }
 
-        // &::before {
-        //   position: absolute;
-        //   content: attr(data-text);
-        //   width: 100%;
-        //   height: 100%;
-        //   transform: translateY(100%);
-        //   left: 0;
-        // }
+        span {
+          --delay: 0.1s;
+          position: relative;
+          display: inline-block;
+          transform: translateY(50%);
+          opacity: 0;
+          animation: reveal 0.6s $easeOutExpo forwards var(--delay),
+            fadeIn 0.8s linear forwards var(--delay);
 
-        // &::after {
-        //   position: absolute;
-        //   content: '';
-        //   z-index: 10;
-        //   width: 100%;
-        //   height: 100%;
-        //   left: 0;
-        //   top: 0;
-        //   transform: translateY(100%);
-        //   background-color: var(--bg-color);
-        // }
+          @for $i from 1 through 9 {
+            &:nth-child(#{$i}) {
+              --delay: #{$i * 0.06s};
+            }
+          }
+        }
       }
 
       p {
@@ -424,7 +414,7 @@ export default {
         opacity: 0;
         // transform: translateY(5%);
 
-        animation: fadeIn 1.2s linear forwards 1.5s;
+        animation: fadeIn 1.2s linear forwards 0.7s;
 
         @media screen and (max-width: 960px) {
           width: 100%;
@@ -433,7 +423,7 @@ export default {
       }
     }
 
-    a {
+    &-scroll {
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -455,8 +445,7 @@ export default {
       text-transform: uppercase;
       z-index: 2;
       transform: scale(0);
-
-      animation: scaleup 0.6s $easeOutExpo 2.2s forwards;
+      animation: scaleup 0.6s $easeOutExpo 1.4s forwards;
 
       @keyframes scaleup {
         to {
@@ -512,8 +501,8 @@ export default {
           object-fit: cover;
           transform: scale(1.14);
           opacity: 0;
-          animation: scaledown 1.2s $easeOutExpo 1.5s forwards,
-            fadeIn 0.7s 1.5s forwards;
+          animation: scaledown 1.2s $easeOutExpo 0.7s forwards,
+            fadeIn 0.7s 0.7s forwards;
 
           @keyframes scaledown {
             to {
