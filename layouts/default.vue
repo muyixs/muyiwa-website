@@ -140,7 +140,7 @@ export default {
 
   svg {
     position: absolute;
-    transform: scale(1.3);
+    transform: scale(1.4);
     opacity: 1;
     overflow: show;
     --stroke-length: 438;
