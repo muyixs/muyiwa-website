@@ -92,10 +92,11 @@ export default {
     async routes() {
       try {
         const entries = await api.fetchPosts()
+        const assets = entries.data.includes.Asset
         return entries.data.items.map((entry) => {
           return {
-            route: `blog/${entry.fields.slug}`,
-            payload: entry
+            route: `/blog/${entry.fields.slug}`,
+            payload: { entry, assets },
           }
         })
       } catch (error) { }

@@ -66,11 +66,14 @@ export default {
     }
 
     if (payload) {
-      assets = payload.includes.Asset
+      assets = payload.assets
 
       return {
-        post: payload,
-        postBody: documentToHtmlString(payload.fields.body, renderOptions),
+        post: payload.entry,
+        postBody: documentToHtmlString(
+          payload.entry.fields.body,
+          renderOptions
+        ),
       }
     }
 
