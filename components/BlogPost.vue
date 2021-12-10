@@ -5,11 +5,11 @@
         :to="{
           name: 'blog-category-category',
           params: {
-            category: formatCategory(postDetails.fields.tag),
+            category: formatCategory(postDetails.fields.primaryTag),
           },
         }"
       >
-        {{ postDetails.fields.tag }}
+        {{ postDetails.fields.primaryTag }}
       </nuxt-link>
     </div>
     <nuxt-link
@@ -28,12 +28,12 @@
         :to="{
           name: 'blog-category-category',
           params: {
-            category: formatCategory(postDetails.fields.tag),
+            category: formatCategory(postDetails.fields.primaryTag),
           },
         }"
         class="c-tag"
       >
-        {{ postDetails.fields.tag }}
+        {{ postDetails.fields.primaryTag }}
       </nuxt-link>
       <nuxt-link
         v-if="postDetails.fields.secondaryTag"
@@ -54,10 +54,6 @@
 <script>
 export default {
   props: {
-    tags: {
-      type: Array,
-      required: true,
-    },
     postDetails: {
       type: Object,
       default: () => {},

@@ -31,8 +31,8 @@
           All
         </nuxt-link>
         <nuxt-link
-          v-for="tag in tags"
-          :key="tag"
+          v-for="(tag, index) in tags"
+          :key="index"
           :to="{
             name: 'blog-category-category',
             params: {
@@ -41,7 +41,8 @@
           }"
           class="c-tag"
           :class="{ 'is-active': category === tag.title }"
-          >{{ tag.title }}
+        >
+          {{ tag.title }}
         </nuxt-link>
       </div>
     </section>
