@@ -18,6 +18,11 @@ h3,
 	@include screen('small') {
 		font-size: 5.2rem;
 	}
+
+	@media screen and (max-width: 380px) {
+		font-size: 5rem;
+	}
+
 }
 
 .u-font-h2 {

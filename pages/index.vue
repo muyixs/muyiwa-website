@@ -505,7 +505,7 @@ export default {
         img {
           width: 100%;
           height: 100%;
-          object-position: center bottom;
+          object-position: center top;
           object-fit: cover;
           transform: scale(1.14);
           opacity: 0;

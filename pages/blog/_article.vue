@@ -293,7 +293,7 @@ export default {
     margin-top: 190px;
 
     @include screen('small') {
-      margin-top: 150px;
+      margin-top: 120px;
     }
 
     h3 {
