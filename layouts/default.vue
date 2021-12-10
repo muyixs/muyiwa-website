@@ -111,6 +111,10 @@ export default {
     padding: 0px 30px 30px;
   }
 
+  @media screen and (max-width: 380px) {
+    padding: 0px 26px 30px;
+  }
+
   &__container {
     margin: 0 auto;
     max-width: 1680px;
