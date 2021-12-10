@@ -31,40 +31,17 @@
           All
         </nuxt-link>
         <nuxt-link
+          v-for="tag in tags"
+          :key="tag"
           :to="{
             name: 'blog-category-category',
             params: {
-              category: formatCategory('Software Engineering'),
+              category: tag.slug,
             },
           }"
           class="c-tag"
-          :class="{ 'is-active': category === 'Software Engineering' }"
-        >
-          Software engineering
-        </nuxt-link>
-        <nuxt-link
-          :to="{
-            name: 'blog-category-category',
-            params: {
-              category: formatCategory('Consumer Goods'),
-            },
-          }"
-          class="c-tag"
-          :class="{ 'is-active': category === 'Consumer Goods' }"
-        >
-          Consumer goods
-        </nuxt-link>
-        <nuxt-link
-          :to="{
-            name: 'blog-category-category',
-            params: {
-              category: formatCategory('Community'),
-            },
-          }"
-          class="c-tag"
-          :class="{ 'is-active': category === 'Community' }"
-        >
-          Community
+          :class="{ 'is-active': category === tag.title }"
+          >{{ tag.title }}
         </nuxt-link>
       </div>
     </section>
@@ -94,6 +71,7 @@
 
 <script>
 import api from '@/utils/api.js'
+import tags from '@/utils/blog-tags.js'
 
 export default {
   components: {},
@@ -132,6 +110,7 @@ export default {
     return {
       page: this.$route.query.page || 1,
       PAGE_LIMIT: 5,
+      tags,
     }
   },
   watch: {
