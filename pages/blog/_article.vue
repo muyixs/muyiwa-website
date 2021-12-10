@@ -290,17 +290,21 @@ export default {
   }
 
   &__posts-wrap {
-    margin-top: 190px;
+    margin-top: 180px;
 
     @include screen('small') {
-      margin-top: 110px;
+      margin-top: 105px;
     }
 
     h3 {
       font-size: 2.4rem;
       text-transform: uppercase;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       font-weight: 500;
+
+      @include screen('small') {
+        margin-bottom: 32px;
+      }
     }
   }
 }
