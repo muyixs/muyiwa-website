@@ -6,7 +6,7 @@
       share.
     </p>
     <div class="c-footer__links">
-      <a href="mailto:muyixs@gmail.com" class="c-footer__links-email">
+      <a href="mailto:madenaike1@gmail.com" class="c-footer__links-email">
         <svg
           width="135"
           height="135"
@@ -41,8 +41,22 @@
         >
           Linkedin
         </a>
-        <a class="c-link" data-text="Twitter" href="">Twitter</a>
-        <a class="c-link" data-text="Resume" href="">Resume</a>
+        <a
+          class="c-link"
+          data-text="Twitter"
+          href="https://twitter.com/Olumuyiwaaa"
+          target="_blank"
+        >
+          Twitter
+        </a>
+        <a
+          class="c-link"
+          data-text="Resume"
+          href="https://read.cv/olumuyiwa"
+          target="_blank"
+        >
+          Resume
+        </a>
       </div>
     </div>
     <div class="c-footer__credit">
