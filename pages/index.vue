@@ -22,7 +22,7 @@
           three continents so far. Currently, I live in the Bay Area, working as
           a
           <span class="u-font-highlighted">Senior Software Engineer</span> on
-          <span class="u-font-highlighted">Google search</span>. I am incredibly
+          <span class="u-font-highlighted">Google Search</span>. I am incredibly
           passionate about technology, people and the many intriguing ways they
           intersect.
         </p>

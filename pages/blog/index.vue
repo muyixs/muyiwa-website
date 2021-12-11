@@ -1,10 +1,7 @@
 <template>
   <div class="c-blog">
     <h1 class="u-font-h1">Blog</h1>
-    <p class="c-blog__page-subtext u-font-regular">
-      This is where I write about topics that I find interesting. Enjoy the
-      read.
-    </p>
+    <p class="c-blog__page-subtext u-font-regular">Enjoy the read :)</p>
     <section class="c-blog__filter">
       <button class="c-blog__filter-toggle" @click="toggleFilter()">
         <span>Filter</span>
