@@ -436,12 +436,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      $size: 140px;
+      --size: 140px;
       position: absolute;
       right: 0;
       top: 515px;
-      width: $size;
-      height: $size;
+      width: var(--size);
+      height: var(--size);
       border-radius: 100px;
       border: none;
       background-color: $color-navy-blue;
@@ -454,6 +454,12 @@ export default {
       z-index: 2;
       transform: scale(0);
       animation: scaleup 0.6s $easeOutExpo 1.4s forwards;
+
+      @media screen and (max-width: 1440px) {
+        --size: 120px;
+        font-size: 1.6rem;
+        top: 500px;
+      }
 
       @keyframes scaleup {
         to {
@@ -492,6 +498,10 @@ export default {
         height: 680px;
         overflow: hidden;
 
+        @media screen and (max-width: 1440px) {
+          height: 610px;
+        }
+
         @media screen and (max-width: 1024px) {
           width: 100%;
         }
@@ -500,6 +510,10 @@ export default {
           height: auto;
           max-height: 680px;
           object-position: top;
+        }
+
+        @include screen('small') {
+          max-height: 105vw;
         }
 
         img {
