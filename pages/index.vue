@@ -512,10 +512,6 @@ export default {
           object-position: top;
         }
 
-        @include screen('small') {
-          max-height: 105vw;
-        }
-
         img {
           width: 100%;
           height: 100%;
