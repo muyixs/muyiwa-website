@@ -458,7 +458,7 @@ export default {
       @media screen and (max-width: 1440px) {
         --size: 120px;
         font-size: 1.6rem;
-        top: 500px;
+        top: 480px;
       }
 
       @keyframes scaleup {
