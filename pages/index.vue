@@ -497,11 +497,11 @@ export default {
           this.windowWidth = currentWidth
         }
       })
-      // window.addEventListener('blur', () => {
-      //   citiesRow.forEach((row) => {
-      //     toggleRowAnimation(row, 'paused')
-      //   })
-      // })
+      window.addEventListener('blur', () => {
+        citiesWrap.forEach((element) => {
+          element.classList.remove('animate')
+        })
+      })
       window.addEventListener('focus', () => {
         // citiesRow.forEach((row) => {
         //   toggleRowAnimation(row, 'running')
