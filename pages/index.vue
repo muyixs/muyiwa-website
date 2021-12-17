@@ -82,13 +82,13 @@
         shaped my worldview and perspective.
       </p>
       <div class="c-home__cities-row">
-        <div class="c-home__cities-wrap">
+        <div class="c-home__cities-wrap animate">
           <span data-text="San Francisco">San Francisco</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="London">London</span>
           <span data-text="Chicago">Chicago</span>
         </div>
-        <div class="c-home__cities-wrap">
+        <div class="c-home__cities-wrap animate">
           <span data-text="San Francisco">San Francisco</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="London">London</span>
@@ -118,13 +118,13 @@
         />
       </div>
       <div class="c-home__cities-row">
-        <div class="c-home__cities-wrap">
+        <div class="c-home__cities-wrap animate">
           <span data-text="Chicago">Chicago</span>
           <span data-text="London">London</span>
           <span data-text="Lagos">Lagos</span>
           <span data-text="San Francisco">San Francisco</span>
         </div>
-        <div class="c-home__cities-wrap">
+        <div class="c-home__cities-wrap animate">
           <span data-text="Chicago">Chicago</span>
           <span data-text="London">London</span>
           <span data-text="Lagos">Lagos</span>
@@ -145,35 +145,49 @@ export default {
     }
   },
   mounted() {
+    this.citiesScroll()
     this.windowWidth = window.innerWidth
     // this.initHeroAnimation()
-    this.initCitiesScroll()
+    // this.initCitiesScroll()
 
-    window.addEventListener('resize', () => {
-      const currentWidth = window.innerWidth
-      if (this.windowWidth !== currentWidth) {
-        this.forceRerender()
-        this.windowWidth = currentWidth
-      }
-    })
+    // window.addEventListener('resize', () => {
+    //   const currentWidth = window.innerWidth
+    //   if (this.windowWidth !== currentWidth) {
+    //     this.forceRerender()
+    //     this.windowWidth = currentWidth
+    //   }
+    // })
 
     const nameEl = document.getElementsByClassName('u-font-h1')
     const spanArr = nameEl[0].querySelectorAll('span')
     spanArr.forEach((element) => {
       element.setAttribute('data-text', element.innerHTML)
     })
+
+    // window.addEventListener('focus', () => {
+    //   // setAnimationValues()
+    //   this.forceRerender()
+    // })
+
+    // window.addEventListener('resize', () => {
+    //   const currentWidth = window.innerWidth
+    //   if (this.windowWidth !== currentWidth) {
+    //     this.forceRerender()
+    //     this.windowWidth = currentWidth
+    //   }
+    // })
   },
   methods: {
     forceRerender() {
       // Remove my-component from the DOM
       this.renderComponent = false
-
       this.$nextTick(() => {
         // Add the component back in
         this.renderComponent = true
         setTimeout(() => {
-          this.initCitiesScroll()
-        }, 10)
+          // this.initCitiesScroll()
+          this.citiesScroll()
+        }, 2)
       })
     },
     initHeroAnimation() {
@@ -219,35 +233,36 @@ export default {
 
       const reset = (element) => {
         const parent = element.parentNode
-        const clone = element.cloneNode(true)
-        parent.replaceChild(clone, element)
+        // const clone = element.cloneNode(true)
+        // parent.replaceChild(clone, element)
 
-        setTimeout(() => {
-          clone.style.setProperty(
-            '--offset',
-            `${clone.offsetWidth * (elCount - 1)}px`
-          )
-          clone.style.setProperty('--translate-value', `${100 * elCount}%`)
-          clone.style.setProperty(
-            '--transition-time',
-            `${timeConstant * elCount}s`
-          )
+        // setTimeout(() => {
+        //   clone.style.setProperty(
+        //     '--offset',
+        //     `${clone.offsetWidth * (elCount - 1)}px`
+        //   )
+        //   clone.style.setProperty('--translate-value', `${100 * elCount}%`)
+        //   clone.style.setProperty(
+        //     '--transition-time',
+        //     `${timeConstant * elCount}s`
+        //   )
 
-          clone.addEventListener('animationend', () => {
-            reset(clone)
-          })
-        }, 50)
-        // parent.appendChild(element)
+        //   clone.addEventListener('animationend', () => {
+        //     reset(clone)
+        //   })
+        // }, 50)
+        parent.removeChild(element)
+        parent.appendChild(element)
         // setAnimationValues(clone)
-        // clone.style.setProperty(
-        //   '--offset',
-        //   `${element.offsetWidth * (elCount - 1)}px`
-        // )
-        // clone.style.setProperty('--translate-value', `${100 * elCount}%`)
-        // clone.style.setProperty(
-        //   '--transition-time',
-        //   `${timeConstant * elCount}s`
-        // )
+        element.style.setProperty(
+          '--offset',
+          `${element.offsetWidth * (elCount - 1)}px`
+        )
+        element.style.setProperty('--translate-value', `${100 * elCount}%`)
+        element.style.setProperty(
+          '--transition-time',
+          `${timeConstant * elCount}s`
+        )
       }
 
       const toggleRowAnimation = (row, state) => {
@@ -355,6 +370,143 @@ export default {
         })
 
         windowIsActive = true
+      })
+    },
+    citiesScroll() {
+      // const citiesRow = this.$refs.cities.querySelectorAll(
+      //   '.c-home__cities-row'
+      // )
+      const citiesWrap = this.$refs.cities.querySelectorAll(
+        '.c-home__cities-wrap'
+      )
+      const cities = this.$refs.cities.querySelectorAll(
+        '.c-home__cities-row span'
+      )
+
+      const setAnimationValues = () => {
+        let firstRun = false
+        citiesWrap.forEach((element) => {
+          let transitionTime
+
+          const animate = () => {
+            const index = Array.from(element.parentNode.children).indexOf(
+              element
+            )
+            transitionTime = firstRun ? 32 : (index + 1) * 16
+            const translateValue = firstRun ? 200 : (index + 1) * 100
+
+            // const siblingIndex = index === 0 ? 1 : 0
+            // const xOffset = firstRun
+            //   ? element.offsetWidth +
+            //     citiesWrap[siblingIndex].getBoundingClientRect().left
+            //   : element.offsetWidth * index
+            const xOffset = firstRun
+              ? element.offsetWidth
+              : element.offsetWidth * index
+
+            element.style.setProperty('--translate-value', `${translateValue}%`)
+            element.style.setProperty('--transition-time', `${transitionTime}s`)
+            element.style.setProperty('--offset', `${xOffset}px`)
+            element.classList.add('animate')
+
+            // setTimeout(() => {
+            //   firstRun = true
+            //   element.classList.remove('animate')
+            //   animate()
+            // }, `${transitionTime * 1000}`)
+          }
+
+          element.addEventListener('animationend', () => {
+            firstRun = true
+            element.classList.remove('animate')
+            animate()
+          })
+
+          animate()
+        })
+      }
+      // const toggleRowAnimation = (row, state) => {
+      //   row.style.setProperty('--anim-play-state', state)
+      // }
+      const reset = () => {
+        citiesWrap.forEach((element) => {
+          element.classList.remove('animate')
+        })
+        setAnimationValues()
+      }
+      const showCityImage = (city) => {
+        const citiesSectionTopOffset =
+          this.$refs.cities.getBoundingClientRect().top
+        const elRect = city.getBoundingClientRect()
+        const elWidth = elRect.width
+        const elHeight = elRect.height
+        const elOffsetX = elRect.left
+        const elOffsetY = elRect.top
+
+        let xPosition
+        if (elOffsetX < window.innerWidth / 2) {
+          xPosition = elWidth + elOffsetX + 15
+        } else {
+          const cityImageWidth =
+            this.$refs.cityImage.getBoundingClientRect().width
+          xPosition = elOffsetX - cityImageWidth - 15
+        }
+
+        const yPosition =
+          elOffsetY +
+          elHeight / 2 -
+          citiesSectionTopOffset -
+          this.$refs.cityImage.getBoundingClientRect().height / 2
+
+        const selectedCityText = city.getAttribute('data-text')
+        const cityImage = this.$refs.cityImage.querySelector(
+          `img[data-img="${selectedCityText}"]`
+        )
+
+        cityImage.style.setProperty('--opacity', '1')
+        this.$refs.cityImage.style.setProperty('--x-position', `${xPosition}px`)
+        this.$refs.cityImage.style.setProperty('--y-position', `${yPosition}px`)
+      }
+      const hideCityImage = (city) => {
+        const yPosition = this.$refs.cityImage.getBoundingClientRect().top + 70
+
+        const selectedCityText = city.getAttribute('data-text')
+        const cityImage = this.$refs.cityImage.querySelector(
+          `img[data-img="${selectedCityText}"]`
+        )
+        cityImage.style.setProperty('--opacity', '0')
+
+        this.$refs.cityImage.style.setProperty('--y-position', `${yPosition}px`)
+      }
+
+      setAnimationValues()
+      cities.forEach((city) => {
+        city.addEventListener('mouseenter', () => {
+          if (this.windowWidth < 768) return
+          showCityImage(city)
+        })
+        city.addEventListener('mouseleave', () => {
+          if (this.windowWidth < 768) return
+          hideCityImage(city)
+        })
+      })
+      window.addEventListener('resize', () => {
+        const currentWidth = window.innerWidth
+        if (this.windowWidth !== currentWidth) {
+          reset()
+          this.windowWidth = currentWidth
+        }
+      })
+      // window.addEventListener('blur', () => {
+      //   citiesRow.forEach((row) => {
+      //     toggleRowAnimation(row, 'paused')
+      //   })
+      // })
+      window.addEventListener('focus', () => {
+        // citiesRow.forEach((row) => {
+        //   toggleRowAnimation(row, 'running')
+        // })
+        reset()
       })
     },
   },
@@ -668,12 +820,19 @@ export default {
       .c-home__cities-wrap {
         --direction: var(--switch);
         display: inline-block;
-        -webkit-animation: scrollText var(--transition-time) linear;
-        -webkit-animation-play-state: var(--anim-play-state);
-        animation: scrollText var(--transition-time) linear;
-        animation-play-state: var(--anim-play-state);
         position: absolute;
         top: 0;
+
+        &.animate {
+          -webkit-animation: scrollText var(--transition-time) linear;
+          -webkit-animation-play-state: var(--anim-play-state);
+          animation: scrollText var(--transition-time) linear;
+          animation-play-state: var(--anim-play-state);
+
+          @include screen('small') {
+            animation-play-state: running;
+          }
+        }
 
         @keyframes scrollText {
           to {
