@@ -46,7 +46,7 @@
           am—which I believe will be ever more crucial in the coming future. I
           primarily write about the following topics and themes:
         </p>
-        <div class="c-home__interests-child">
+        <div class="c-home__interests-topic">
           <h2 class="u-font-h2">My Identity</h2>
           <p class="u-font-regular">
             Who I am, What motivates me, My vision for the future, The things I
@@ -54,7 +54,7 @@
             and the many thoughts I have.
           </p>
         </div>
-        <div class="c-home__interests-child">
+        <div class="c-home__interests-topic">
           <h2 class="u-font-h2">People and Community</h2>
           <p class="u-font-regular">
             Designing an equitable future. Africa, her past, present and the
@@ -63,7 +63,7 @@
             and World politics.
           </p>
         </div>
-        <div class="c-home__interests-child">
+        <div class="c-home__interests-topic">
           <h2 class="u-font-h2">Computer Science</h2>
           <p class="u-font-regular">
             Advancements, technologies, frameworks and languages. Start ups and
@@ -444,7 +444,7 @@ export default {
       max-width: 740px;
     }
 
-    &-child {
+    &-topic {
       max-width: 800px;
       margin-top: 100px;
 
