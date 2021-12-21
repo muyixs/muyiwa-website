@@ -38,7 +38,11 @@
         </div>
       </div>
     </section>
-    <section ref="sectionInterests" class="c-home__interests">
+    <section
+      id="section-interests"
+      ref="sectionInterests"
+      class="c-home__interests"
+    >
       <div class="c-home__interests-text">
         <p class="c-home__interests-subtext u-font-regular">
           This <nuxt-link to="blog">blog</nuxt-link> exists as a vehicle to hone
@@ -450,13 +454,12 @@ export default {
     }
 
     a {
-      color: $color-turquoise;
       font-weight: 400;
     }
 
     &-subtext {
       max-width: 740px;
-      transform: translateY(70%);
+      transform: translateY(50%);
       opacity: 0;
       animation: slide 1.2s $easeOutExpo forwards 0.2s,
         fade 1s linear forwards 0.2s;
@@ -467,7 +470,7 @@ export default {
       --delay: 0;
       max-width: 800px;
       margin-top: 100px;
-      transform: translateY(50%);
+      transform: translateY(30%);
       opacity: 0;
       animation: slide 1.2s $easeOutExpo forwards var(--delay),
         fade 1s linear forwards var(--delay);

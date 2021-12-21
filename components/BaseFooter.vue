@@ -61,6 +61,9 @@
     </div>
     <div class="c-footer__credit">
       <span>© {{ new Date().getUTCFullYear() }}</span>
+      <span>
+        Made in Lagos by <a href="https://twitter.com/kolapo_">Kolapo</a>
+      </span>
       <button class="c-link" @click="changeTheme()">Change theme</button>
     </div>
   </section>
@@ -204,13 +207,13 @@ export default {
       }
 
       &:hover {
-        color: $color-turquoise;
+        color: $color-blue;
 
         svg {
           transform: scale(1.04);
 
           path {
-            stroke: $color-turquoise;
+            stroke: $color-blue;
           }
         }
       }
@@ -226,6 +229,17 @@ export default {
 
     @include screen('small') {
       font-size: 1.6rem;
+      flex-wrap: wrap;
+
+      span {
+        width: 50%;
+      }
+
+      & > :nth-child(2) {
+        margin-top: 30px;
+        order: 3;
+        width: 100%;
+      }
     }
 
     button {
