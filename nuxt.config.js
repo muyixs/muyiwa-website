@@ -25,23 +25,31 @@ export default {
       },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://muyiwa.netlify.app' },
-      { property: 'og:title', content: '' },
+      { hid: 'og:title', property: 'og:title', content: 'Olumuyiwa Adenaike' },
       {
+        hid: 'og:image',
         property: 'og:image',
         content: 'https://muyiwa.netlify.app/seo-image.png',
       },
       {
+        hid: 'og:description',
         property: 'og:description',
         content: 'Personal website and blog of Olumuyiwa Adenaike.',
       },
       { property: 'twitter:card', content: 'summary_large_image' },
-      { property: 'twitter:url', content: '' },
-      { property: 'twitter:title', content: '' },
+      { property: 'twitter:url', content: 'https://muyiwa.netlify.app' },
       {
+        hid: 'twitter:title',
+        property: 'twitter:title',
+        content: 'Olumuyiwa Adenaike'
+      },
+      {
+        hid: 'twitter:description',
         property: 'twitter:description',
         content: 'Personal website and blog of Olumuyiwa Adenaike.',
       },
       {
+        hid: 'twitter:image',
         property: 'twitter:image',
         content: 'https://muyiwa.netlify.app/seo-image.png',
       },

@@ -11,9 +11,9 @@
         <span>{{ getReadingTime(postBody) }} MIN READ</span>
       </p>
       <img
-        v-if="post.fields.coverImage"
+        v-if="coverImage"
         class="c-article__cover-image"
-        :src="getCoverImage(post.fields.coverImage.sys.id)"
+        :src="coverImage"
         alt="Article cover image"
       />
       <!-- eslint-disable-next-line vue/no-v-html -->
@@ -71,28 +71,43 @@ export default {
       },
     }
 
+    const getCoverImage = (post) => {
+      if (post.fields.coverImage) {
+        const id = post.fields.coverImage.sys.id
+        const asset = this.assets.filter((asset) => asset.sys.id === id)
+        return `https:${asset[0].fields.file.url}`
+      }
+
+      return null
+    }
+
     if (payload) {
       assets = payload.assets
+      const post = payload.entry
+      const coverImage = getCoverImage(post)
 
       return {
-        post: payload.entry,
+        post,
         postBody: documentToHtmlString(
           payload.entry.fields.body,
           renderOptions
         ),
         assets,
+        coverImage,
       }
     }
 
     try {
       const entries = await api.fetchPosts({ slug: params.article })
-      const post = entries.data.items[0]
       assets = entries.data.includes.Asset
+      const post = entries.data.items[0]
+      const coverImage = getCoverImage(post)
 
       return {
         post,
         postBody: documentToHtmlString(post.fields.body, renderOptions),
         assets,
+        coverImage,
       }
     } catch (error) {}
   },
@@ -100,7 +115,6 @@ export default {
     return {
       nextPost: null,
       previousPost: null,
-      articleUrl: '',
     }
   },
   head() {
@@ -125,9 +139,13 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.getCoverImage(this.post.fields.coverImage.sys.id),
+          content: this.coverImage || '',
         },
-        { hid: 'og:url', property: 'og:url', content: this.articleUrl },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://muyiwa.netlify.app/blog/${this.post.fields.slug}`,
+        },
         {
           hid: 'twitter:card',
           name: 'twitter:card',
@@ -146,19 +164,18 @@ export default {
         {
           hid: 'twitter:url',
           name: 'twitter:url',
-          content: this.articleUrl,
+          content: `https://muyiwa.netlify.app/blog/${this.post.fields.slug}`,
         },
         {
-          hid: 'twitter:image:src',
-          name: 'twitter:image:src',
-          content: this.getCoverImage(this.post.fields.coverImage.sys.id),
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.coverImage || '',
         },
       ],
     }
   },
   mounted() {
     this.fetchMorePosts()
-    this.articleUrl = window.location.href
   },
   methods: {
     formatDate: (d) => {
