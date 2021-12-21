@@ -327,8 +327,8 @@ export default {
       transition: 1.2s $easeOutExpo;
       text-transform: uppercase;
       z-index: 2;
-      transform: scale(0);
-      animation: scaleup 0.6s $easeOutExpo 1.4s forwards;
+      opacity: 0;
+      animation: scale 0.6s $easeOutExpo 1.4s, fade 0s 1.4s forwards;
 
       @media screen and (max-width: 1440px) {
         --size: 120px;
@@ -336,7 +336,10 @@ export default {
         top: 480px;
       }
 
-      @keyframes scaleup {
+      @keyframes scale {
+        from {
+          transform: scale(0);
+        }
         to {
           transform: scale(1);
         }
