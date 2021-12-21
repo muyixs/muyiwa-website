@@ -1,7 +1,7 @@
 <template>
   <div class="c-article">
     <div class="c-article__container">
-      <p class="c-article__tag">{{ post.fields.tag }}</p>
+      <p class="c-article__tag">{{ post.fields.primaryTag }}</p>
       <h1 class="u-font-h1">{{ post.fields.title }}</h1>
       <p class="c-article__excerpt u-font-regular">
         {{ post.fields.summary }}
@@ -10,6 +10,12 @@
         <span> {{ formatDate(post.sys.createdAt) }}</span>
         <span>{{ getReadingTime(postBody) }} MIN READ</span>
       </p>
+      <img
+        v-if="post.fields.coverImage"
+        class="c-article__cover-image"
+        :src="getCoverImage(post.fields.coverImage.sys.id)"
+        alt="Article cover image"
+      />
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div ref="articleBody" class="c-article__body" v-html="postBody" />
     </div>
@@ -74,6 +80,7 @@ export default {
           payload.entry.fields.body,
           renderOptions
         ),
+        assets,
       }
     }
 
@@ -85,6 +92,7 @@ export default {
       return {
         post,
         postBody: documentToHtmlString(post.fields.body, renderOptions),
+        assets,
       }
     } catch (error) {}
   },
@@ -133,6 +141,10 @@ export default {
             posts[postIndex === 0 ? posts.length - 1 : postIndex - 1]
         }
       } catch (error) {}
+    },
+    getCoverImage(id) {
+      const asset = this.assets.filter((asset) => asset.sys.id === id)
+      return `https:${asset[0].fields.file.url}`
     },
   },
 }
@@ -190,6 +202,14 @@ export default {
         border-radius: 100%;
       }
     }
+  }
+
+  &__cover-image {
+    margin-top: 50px;
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    object-position: center;
   }
 
   &__body {
