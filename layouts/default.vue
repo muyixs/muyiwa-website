@@ -2,10 +2,10 @@
   <div class="c-app">
     <div class="c-app__container">
       <top-nav />
-      <Nuxt v-if="showPage" />
-      <div v-else class="c-loader">
+      <Nuxt v-show="showPage" />
+      <div v-show="showLoader" class="c-loader">
         <div class="c-loader__container">
-          <span ref="loaderText" class="c-loader__text"> {{ counter }}% </span>
+          <span ref="loaderText" class="c-loader__text">{{ counter }}%</span>
           <svg
             width="135"
             height="135"
@@ -40,19 +40,19 @@
 export default {
   data() {
     return {
-      showPage: false,
+      showLoader: true,
       counter: 0,
       loadedAssets: false,
+      showPage: true,
     }
   },
   mounted() {
     this.setTheme()
     this.preloadAssets()
+    this.startCounter()
     if (this.$route.path === '/') {
-      this.startCounter()
-    } else {
-      this.showPage = true
-    }
+      this.showPage = false
+    } else this.showLoader = false
   },
   methods: {
     setTheme() {
@@ -86,6 +86,7 @@ export default {
     },
     hideLoader() {
       setTimeout(() => {
+        this.showLoader = false
         this.showPage = true
       }, 500)
     },
