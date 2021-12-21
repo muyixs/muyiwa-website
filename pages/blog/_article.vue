@@ -71,20 +71,15 @@ export default {
       },
     }
 
-    const getCoverImage = (post) => {
-      if (post.fields.coverImage) {
-        const id = post.fields.coverImage.sys.id
-        const asset = this.assets.filter((asset) => asset.sys.id === id)
-        return `https:${asset[0].fields.file.url}`
-      }
-
-      return null
-    }
-
     if (payload) {
       assets = payload.assets
       const post = payload.entry
-      const coverImage = getCoverImage(post)
+      let coverImage = null
+      if (post.fields.coverImage) {
+        const id = post.fields.coverImage.sys.id
+        const asset = assets.filter((asset) => asset.sys.id === id)
+        coverImage = `https:${asset[0].fields.file.url}`
+      }
 
       return {
         post,
@@ -101,7 +96,12 @@ export default {
       const entries = await api.fetchPosts({ slug: params.article })
       assets = entries.data.includes.Asset
       const post = entries.data.items[0]
-      const coverImage = getCoverImage(post)
+      let coverImage = null
+      if (post.fields.coverImage?.sys?.id) {
+        const id = post.fields.coverImage.sys.id
+        const asset = assets.filter((asset) => asset.sys.id === id)
+        coverImage = `https:${asset[0].fields.file.url}`
+      }
 
       return {
         post,
