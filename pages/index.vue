@@ -114,7 +114,7 @@
         />
         <img
           data-img="Lagos"
-          src="@/assets/images/cities/san-francisco.jpg"
+          src="@/assets/images/cities/lagos.jpg"
           alt="Lagos image"
         />
         <img
