@@ -37,7 +37,7 @@
         </div>
       </div>
     </section>
-    <section id="section-interests" class="c-home__interests">
+    <section ref="sectionInterests" class="c-home__interests">
       <div class="c-home__interests-text">
         <p class="c-home__interests-subtext u-font-regular">
           This <nuxt-link to="blog">blog</nuxt-link> exists as a vehicle to hone
@@ -126,6 +126,7 @@
 <script>
 export default {
   mounted() {
+    this.initIntersectionObserver()
     this.initCitiesAnimation()
   },
   methods: {
@@ -218,6 +219,21 @@ export default {
       handleCityHover()
       window.addEventListener('resize', handleResize, false)
     },
+    initIntersectionObserver() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio > 0) {
+              entry.target.style.setProperty('--anim-play-state', 'running')
+            }
+          })
+        },
+        {
+          threshold: 0.2,
+        }
+      )
+      observer.observe(this.$refs.sectionInterests)
+    },
   },
 }
 </script>
@@ -225,6 +241,18 @@ export default {
 <style lang="scss" scoped>
 .c-home {
   padding-top: 13vh;
+
+  @keyframes slide {
+    to {
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes fade {
+    to {
+      opacity: 1;
+    }
+  }
 
   &__about {
     display: flex;
@@ -243,18 +271,6 @@ export default {
         width: 100%;
       }
 
-      @keyframes reveal {
-        to {
-          transform: translateY(0%);
-        }
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
       h1 {
         div {
           display: inline-block;
@@ -266,8 +282,8 @@ export default {
           display: inline-block;
           transform: translateY(50%);
           opacity: 0;
-          animation: reveal 0.6s $easeOutExpo forwards var(--delay),
-            fadeIn 0.8s linear forwards var(--delay);
+          animation: slide 0.6s $easeOutExpo forwards var(--delay),
+            fade 0.8s linear forwards var(--delay);
 
           @for $i from 1 through 9 {
             &:nth-child(#{$i}) {
@@ -281,9 +297,7 @@ export default {
         margin-top: 70px;
         max-width: 560px;
         opacity: 0;
-        // transform: translateY(5%);
-
-        animation: fadeIn 1.2s linear forwards 0.7s;
+        animation: fade 1.2s linear forwards 0.7s;
 
         @media screen and (max-width: 960px) {
           width: 100%;
@@ -381,7 +395,7 @@ export default {
           transform: scale(1.14);
           opacity: 0;
           animation: scaledown 1.2s $easeOutExpo 0.7s forwards,
-            fadeIn 0.7s 0.7s forwards;
+            fade 0.7s linear 0.7s forwards;
 
           @keyframes scaledown {
             to {
@@ -389,7 +403,7 @@ export default {
             }
           }
 
-          @keyframes fadeIn {
+          @keyframes fade {
             to {
               opacity: 1;
             }
@@ -400,6 +414,7 @@ export default {
   }
 
   &__interests {
+    --anim-play-state: paused;
     display: flex;
     position: relative;
     margin-top: 100px;
@@ -442,11 +457,28 @@ export default {
 
     &-subtext {
       max-width: 740px;
+      transform: translateY(70%);
+      opacity: 0;
+      animation: slide 1.3s $easeOutExpo forwards 0.2s,
+        fade 1s linear forwards 0.2s;
+      animation-play-state: var(--anim-play-state);
     }
 
     &-topic {
+      --delay: 0;
       max-width: 800px;
       margin-top: 100px;
+      transform: translateY(50%);
+      opacity: 0;
+      animation: slide 1.3s $easeOutExpo forwards var(--delay),
+        fade 1s linear forwards var(--delay);
+      animation-play-state: var(--anim-play-state);
+
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) {
+          --delay: #{$i * 0.3s};
+        }
+      }
 
       @include screen('small') {
         margin-top: 70px;
