@@ -100,10 +100,65 @@ export default {
     return {
       nextPost: null,
       previousPost: null,
+      articleUrl: '',
+    }
+  },
+  head() {
+    return {
+      title: this.post.fields.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post.fields.summary,
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.post.fields.title,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.post.fields.summary,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.getCoverImage(this.post.fields.coverImage.sys.id),
+        },
+        { hid: 'og:url', property: 'og:url', content: this.articleUrl },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.post.fields.title,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.post.fields.summary,
+        },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: this.articleUrl,
+        },
+        {
+          hid: 'twitter:image:src',
+          name: 'twitter:image:src',
+          content: this.getCoverImage(this.post.fields.coverImage.sys.id),
+        },
+      ],
     }
   },
   mounted() {
     this.fetchMorePosts()
+    this.articleUrl = window.location.href
   },
   methods: {
     formatDate: (d) => {
