@@ -332,7 +332,7 @@ export default {
       text-transform: uppercase;
       z-index: 2;
       opacity: 0;
-      animation: scale 0.6s $easeOutExpo 1.4s, fade 0s 1.4s forwards;
+      animation: scale 0.6s $easeOutExpo 1.4s, fade 0s linear 1.41s forwards;
 
       @media screen and (max-width: 1440px) {
         --size: 120px;
@@ -461,8 +461,8 @@ export default {
       max-width: 740px;
       transform: translateY(50%);
       opacity: 0;
-      animation: slide 1.2s $easeOutExpo forwards 0.2s,
-        fade 1s linear forwards 0.2s;
+      animation: slide 1s $easeOutExpo forwards 0.2s,
+        fade 0.8s linear forwards 0.2s;
       animation-play-state: var(--anim-play-state);
     }
 
@@ -472,13 +472,13 @@ export default {
       margin-top: 100px;
       transform: translateY(30%);
       opacity: 0;
-      animation: slide 1.2s $easeOutExpo forwards var(--delay),
-        fade 1s linear forwards var(--delay);
+      animation: slide 1s $easeOutExpo forwards var(--delay),
+        fade 0.8s linear forwards var(--delay);
       animation-play-state: var(--anim-play-state);
 
       @for $i from 1 through 4 {
         &:nth-child(#{$i}) {
-          --delay: #{$i * 0.3s};
+          --delay: #{$i * 0.24s};
         }
       }
 
