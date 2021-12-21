@@ -17,14 +17,15 @@
         </h1>
         <p class="u-font-regular">
           Welcome to my personal site and blog, a place to learn about me and
-          the many things that pique my interest. I was born and raised in
-          Lagos, Nigeria and I have had the opportunity to live and work on
-          three continents so far. Currently, I live in the Bay Area, working as
-          a
+          the many things that pique my interest. I am incredibly passionate
+          about technology, people and the intriguing ways they intersect. I am
+          also driven by the desire to constantly challenge myself, and to open
+          myself up to new perspectives and opportunities for growth. During my
+          free time, I enjoy being physically active, picking up new hobbies,
+          and exploring new destinations with my wife. I was born and raised in
+          Lagos, Nigeria, but today I live in the Bay Area, working as a
           <span class="u-font-highlighted">Senior Software Engineer</span> on
-          <span class="u-font-highlighted">Google Search</span>. I am incredibly
-          passionate about technology, people and the many intriguing ways they
-          intersect.
+          <span class="u-font-highlighted">Google Search</span>.
         </p>
       </div>
       <a class="c-home__about-scroll" href="#section-interests">Scroll</a>
@@ -42,32 +43,31 @@
         <p class="c-home__interests-subtext u-font-regular">
           This <nuxt-link to="blog">blog</nuxt-link> exists as a vehicle to hone
           my voice and shape my perspective on issues I am passionate and
-          curious about, and also to provide people an insight into who I
-          am—which I believe will be ever more crucial in the coming future. I
+          curious about, and also to provide an insight into who I am. I
           primarily write about the following topics and themes:
         </p>
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">My Identity</h2>
           <p class="u-font-regular">
-            Who I am, What motivates me, My vision for the future, The things I
-            do well and the things I can be better at. The things I encounter
-            and the many thoughts I have.
+            My focus here is to be open about who I am and what motivates me. I
+            aim to provide my perspective on situations I encounter in my day to
+            day life and how they relate to my identity.
           </p>
         </div>
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">People and Community</h2>
           <p class="u-font-regular">
-            Designing an equitable future. Africa, her past, present and the
-            role she will play in the future. My path to understanding religion
-            and philosophy. Life from an immigrant perspective. Economics, Race
-            and World politics.
+            I believe in the end people matter most, as a result my goal is to
+            document my journey as I learn about society and the ways
+            communities form and function.
           </p>
         </div>
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">Computer Science</h2>
           <p class="u-font-regular">
-            Advancements, technologies, frameworks and languages. Start ups and
-            disruptive thinking. Anecdotes. Personal projects.
+            Computers intrigue me. I am excited about being in a field with so
+            many opportunities to document new advancements, technologies,
+            frameworks, languages and disruptions I come across.
           </p>
         </div>
       </div>
@@ -372,10 +372,6 @@ export default {
         width: 90%;
         height: 680px;
         overflow: hidden;
-
-        @media screen and (max-width: 1440px) {
-          height: 610px;
-        }
 
         @media screen and (max-width: 1024px) {
           width: 100%;
