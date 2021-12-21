@@ -458,7 +458,7 @@ export default {
       max-width: 740px;
       transform: translateY(70%);
       opacity: 0;
-      animation: slide 1.3s $easeOutExpo forwards 0.2s,
+      animation: slide 1.2s $easeOutExpo forwards 0.2s,
         fade 1s linear forwards 0.2s;
       animation-play-state: var(--anim-play-state);
     }
@@ -469,7 +469,7 @@ export default {
       margin-top: 100px;
       transform: translateY(50%);
       opacity: 0;
-      animation: slide 1.3s $easeOutExpo forwards var(--delay),
+      animation: slide 1.2s $easeOutExpo forwards var(--delay),
         fade 1s linear forwards var(--delay);
       animation-play-state: var(--anim-play-state);
 
