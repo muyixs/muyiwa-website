@@ -285,6 +285,7 @@ export default {
         display: block;
         padding: 12px 18px;
         outline: none;
+        color: unset;
       }
     }
 
