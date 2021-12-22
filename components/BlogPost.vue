@@ -95,7 +95,7 @@ export default {
     transition: color 0.5s ease-out;
 
     &:hover {
-      color: $color-turquoise;
+      color: $color-blue;
     }
   }
 
