@@ -1,8 +1,8 @@
 <template>
   <div class="c-subscribe">
     <p class="u-font-regular">
-      Subscribe to my newsletter to get new updates by email on the latest
-      topics and artciles I write about.
+      Subscribe to my newsletter to get updates by email on the latest articles
+      I write.
     </p>
     <form
       id="mc-embedded-subscribe-form"

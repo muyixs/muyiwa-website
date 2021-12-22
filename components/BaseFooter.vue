@@ -2,8 +2,7 @@
   <section id="section-footer" class="c-footer">
     <h1 class="u-font-h1">CONTACT</h1>
     <p class="c-footer__subtext u-font-regular">
-      Feel free to reach out to me if you have interesting things you'd like to
-      share.
+      I am always open to new opportunities to connect and collaborate.
     </p>
     <div class="c-footer__links">
       <a href="mailto:madenaike1@gmail.com" class="c-footer__links-email">
