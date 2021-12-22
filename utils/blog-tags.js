@@ -9,8 +9,8 @@ const tags = [
     slug: 'community'
   },
   {
-    title: 'Software Engineering',
-    slug: 'software-engineering'
+    title: 'Computer Science',
+    slug: 'computer-science'
   },
 ]
 
