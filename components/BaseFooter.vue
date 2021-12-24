@@ -60,9 +60,9 @@
     </div>
     <div class="c-footer__credit">
       <span>© {{ new Date().getUTCFullYear() }}</span>
-      <span>
+      <!-- <span>
         Made in Lagos by <a href="https://twitter.com/kolapo_">Kolapo</a>
-      </span>
+      </span> -->
       <button class="c-link" @click="changeTheme()">Change theme</button>
     </div>
   </section>
@@ -234,11 +234,11 @@ export default {
         width: 50%;
       }
 
-      & > :nth-child(2) {
-        margin-top: 30px;
-        order: 3;
-        width: 100%;
-      }
+      // & > :nth-child(2) {
+      //   margin-top: 30px;
+      //   order: 3;
+      //   width: 100%;
+      // }
     }
 
     button {
