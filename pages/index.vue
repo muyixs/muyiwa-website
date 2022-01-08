@@ -23,9 +23,9 @@
           myself up to new perspectives and opportunities for growth. During my
           free time, I enjoy being physically active, picking up new hobbies,
           and exploring new destinations with my wife. I was born and raised in
-          Lagos, Nigeria, but today I live in the Bay Area, working as a
+          Lagos, Nigeria, but currently, I live in the Bay Area, working as a
           <span class="u-font-highlighted">Senior Software Engineer</span> on
-          <span class="u-font-highlighted">Google Search</span>.
+          Google Search.
         </p>
       </div>
       <a class="c-home__about-scroll" href="#section-interests">Scroll</a>
@@ -53,15 +53,15 @@
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">My Identity</h2>
           <p class="u-font-regular">
-            My focus here is to be open about who I am and what motivates me. I
-            aim to provide my perspective on situations I encounter in my day to
-            day life and how they relate to my identity.
+            My focus is to be open about who I am and what motivates me. I aim
+            to provide my perspective on situations I encounter in my day-to-day
+            life and how they relate to my identity.
           </p>
         </div>
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">People and Community</h2>
           <p class="u-font-regular">
-            I believe in the end people matter most, as a result my goal is to
+            I believe that people matter most. As a result, my goal is to
             document my journey as I learn about society and the ways
             communities form and function.
           </p>
@@ -71,7 +71,7 @@
           <p class="u-font-regular">
             Computers intrigue me. I am excited about being in a field with so
             many opportunities to document new advancements, technologies,
-            frameworks, languages and disruptions I come across.
+            frameworks, languages, and disruptions I come across.
           </p>
         </div>
       </div>
