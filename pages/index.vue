@@ -464,6 +464,10 @@ export default {
       animation: slide 1s $easeOutExpo forwards 0.2s,
         fade 0.8s linear forwards 0.2s;
       animation-play-state: var(--anim-play-state);
+
+      a {
+        text-decoration: underline;
+      }
     }
 
     &-topic {
