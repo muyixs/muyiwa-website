@@ -58,12 +58,12 @@
         </a>
       </div>
     </div>
-    <div class="c-footer__credit">
+    <div class="c-footer__copyright">
       <span>© {{ new Date().getUTCFullYear() }}</span>
       <!-- <span>
         Made in Lagos by <a href="https://twitter.com/kolapo_">Kolapo</a>
       </span> -->
-      <button class="c-link" @click="changeTheme()">Change theme</button>
+      <a class="c-link" href="#">Scroll to top</a>
     </div>
   </section>
 </template>
@@ -219,7 +219,7 @@ export default {
     }
   }
 
-  &__credit {
+  &__copyright {
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
