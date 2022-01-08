@@ -53,8 +53,8 @@
         <div class="c-home__interests-topic">
           <h2 class="u-font-h2">Computer Science</h2>
           <p class="u-font-regular">
-            Computers intrigue me. I am excited about being in a field with so
-            many opportunities to document new advancements, technologies,
+            Computers intrigue me. I am excited to be in a field with so many
+            opportunities to document new advancements, technologies,
             frameworks, languages, and disruptions I come across.
           </p>
         </div>
