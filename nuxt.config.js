@@ -29,7 +29,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://muyiwa.netlify.app/seo-image.png',
+        content: 'https://olumuyiwa.com/seo-image.jpg',
       },
       {
         hid: 'og:description',
@@ -51,7 +51,7 @@ export default {
       {
         hid: 'twitter:image',
         property: 'twitter:image',
-        content: 'https://muyiwa.netlify.app/seo-image.png',
+        content: 'https://olumuyiwa.com/seo-image.jpg',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
