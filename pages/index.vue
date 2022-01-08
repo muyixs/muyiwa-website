@@ -51,11 +51,11 @@
           primarily write about the following topics and themes:
         </p>
         <div class="c-home__interests-topic">
-          <h2 class="u-font-h2">My Identity</h2>
+          <h2 class="u-font-h2">Computer Science</h2>
           <p class="u-font-regular">
-            My focus is to be open about who I am and what motivates me. I aim
-            to provide my perspective on situations I encounter in my day-to-day
-            life and how they relate to my identity.
+            Computers intrigue me. I am excited about being in a field with so
+            many opportunities to document new advancements, technologies,
+            frameworks, languages, and disruptions I come across.
           </p>
         </div>
         <div class="c-home__interests-topic">
@@ -67,11 +67,11 @@
           </p>
         </div>
         <div class="c-home__interests-topic">
-          <h2 class="u-font-h2">Computer Science</h2>
+          <h2 class="u-font-h2">My Identity</h2>
           <p class="u-font-regular">
-            Computers intrigue me. I am excited about being in a field with so
-            many opportunities to document new advancements, technologies,
-            frameworks, languages, and disruptions I come across.
+            My focus is to be open about who I am and what motivates me. I aim
+            to provide my perspective on situations I encounter in my day-to-day
+            life and how they relate to my identity.
           </p>
         </div>
       </div>
