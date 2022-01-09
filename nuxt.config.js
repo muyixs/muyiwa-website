@@ -51,7 +51,7 @@ export default {
       {
         hid: 'twitter:image',
         property: 'twitter:image',
-        content: 'https://olumuyiwa.com/seo-image-twitter.jpg',
+        content: 'https://olumuyiwa.com/seo-image.jpg',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
