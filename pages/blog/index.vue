@@ -188,6 +188,10 @@ export default {
     margin-top: 90px;
     text-transform: uppercase;
 
+    @include screen('small') {
+      margin-top: 70px;
+    }
+
     &-toggle {
       font-weight: 500;
       font-size: 2rem;
